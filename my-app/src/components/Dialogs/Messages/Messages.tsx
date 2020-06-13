@@ -4,7 +4,7 @@ import React from "react";
 
 type MessagesT = {
     text: string,
-    id: string,
+    id: number,
 
 }
 

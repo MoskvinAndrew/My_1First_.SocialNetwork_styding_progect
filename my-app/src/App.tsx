@@ -8,14 +8,16 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
-import {indexT} from "./index"
+import {indexT, indexTT, indexTTT} from "./index"
 
 export type appt = {
-    postsData: Array<indexT>
-
-}
+        postsData: Array<indexT>
+        messagesData:Array<indexTTT>
+        dialogsData: Array<indexTT>
+};
 
 function App(props: appt) {
+    debugger
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -27,7 +29,8 @@ function App(props: appt) {
                     {/*<Route path='/News' component={News}/>*/}
                     {/*<Route path='/Music' component={Music}/>*/}
 
-                    <Route path='/Dialogs' render={() => <Dialogs/>}/>
+                    <Route path='/Dialogs' render={() => <Dialogs messagesData={props.messagesData}
+                                                                  dialogsData={props.dialogsData}/>}/>
                     <Route path='/Profile' render={() => <Profile postsData={props.postsData}/>}/>
                     <Route path='/News' render={() => <News/>}/>
                     <Route path='/Music' render={() => <Music/>}/>

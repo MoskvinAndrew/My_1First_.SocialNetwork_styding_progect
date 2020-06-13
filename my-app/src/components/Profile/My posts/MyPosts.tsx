@@ -10,7 +10,6 @@ export type MypostsTypes = {
 
 function MyPosts(props: MypostsTypes) {
 
-
     let newpostData = props.postsData.map(p => <Post key={p.id} message={p.message} likes={p.likes}/>)
 
     return (

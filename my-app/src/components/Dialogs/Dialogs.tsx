@@ -2,35 +2,19 @@ import React from 'react';
 import S from './dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Messages from "./Messages/Messages";
+import {indexTT, indexTTT} from "../../index";
 
 
 type DialogsTypes = {
-
-
-    dialogsData: Array<DialogsTypes>,
-    messagesData: Array<DialogsTypes>,
+    dialogsData: Array<indexTT>,
+    messagesData: Array<indexTTT>,
 };
 
-
-let dialogsData = [
-    {id: '1', name: 'Dima'},
-    {id: '2', name: 'Andrew'},
-    {id: '3', name: 'Kostya'},
-    {id: '4', name: 'Lexa'}
-
-];
-let messagesData = [
-    {id: '1', text: 'Hello'},
-    {id: '2', text: 'Hello'},
-    {id: '3', text: 'Petya'},
-    {id: '4', text: 'Goodbye'}
-];
+function Dialogs(props:DialogsTypes) {
 
 
-function Dialogs() {
-
-    let dialogsArrayNew = dialogsData.map(d => <DialogItem id={d.id} name={d.name}/>)
-    let messagesArrayNew = messagesData.map(m => <Messages id={m.id} text={m.text}/>)
+    let dialogsArrayNew = props.dialogsData.map(d => <DialogItem id={d.id} name={d.name}/>)
+    let messagesArrayNew = props.messagesData.map(m => <Messages id={m.id} text={m.text}/>)
 
     return (
         <div className={S.dialogs}>
