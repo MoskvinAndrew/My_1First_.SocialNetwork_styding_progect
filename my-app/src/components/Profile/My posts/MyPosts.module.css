@@ -1,0 +1,11 @@
+.postBlock{
+    padding: 10px;
+}
+.item {
+    color: #1f2a5f;
+    margin-top: 10px;
+}
+.item img{
+    width: 60px;
+    border-radius: 10%;
+}
