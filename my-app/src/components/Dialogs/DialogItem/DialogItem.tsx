@@ -1,19 +1,29 @@
 import S from "../dialogs.module.css";
-import {NavLink} from "react-router-dom";
+import {HashRouter, Switch, Route, NavLink} from "react-router-dom";
 import React from "react";
 
 
-type DialogItemT = {
+type DialogItemType = {
+
+    id: string,
     name: string,
-    id: number,
+    ava: string,
+
 
 }
 
 
-function DialogItem(props: DialogItemT) {
-    return (<div className={S.dialog}>< NavLink to={'/dialog' + `/` + (props.id)}>
-        {props.name}
-    </NavLink></div>)
+function DialogItem(props: DialogItemType) {
+    return (
+
+        <div className={S.dialog}>
+
+            < NavLink className={S.link} to='/Chat'>{props.name}</NavLink>
+            <img className={S.avatar} src={props.ava} />
+
+        </div>)
+
+
 }
 
 export default DialogItem;

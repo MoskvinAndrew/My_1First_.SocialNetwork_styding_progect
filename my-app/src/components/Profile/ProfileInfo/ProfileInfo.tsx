@@ -7,7 +7,7 @@ function ProfileInfo() {
     return(
         <div  >
         <div>
-        <img src='https://www.star2star.com/sites/default/files/emerging-technologies-header-image.jpg'/>
+        <img className={K.firstImg} src='https://www.eurocae.net/media/1054/header-2-homepage.png'/>
     </div>
     <div className={K.descriptionBlock}>
         ava+description

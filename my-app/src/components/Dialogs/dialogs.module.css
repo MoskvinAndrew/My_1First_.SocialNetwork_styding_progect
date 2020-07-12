@@ -6,9 +6,11 @@
 .dialogsItems{
  padding: 10px;
 
+
 }
 .dialogsItems .active{
     color: gold;
+
 }
 .messages{
     padding:10px;
@@ -16,4 +18,14 @@
 .message{
     color:white;
 }
+.avatar{
+    width: 40px;
+    border-radius: 15px;
+
+
+}
+.link{
+    text-decoration: none;
+}
+
 

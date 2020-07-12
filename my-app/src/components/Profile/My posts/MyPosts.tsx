@@ -1,29 +1,56 @@
 import React from "react";
 import C from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {indexT} from "../../../index";
+import state, {addNewPostActionCreator, newTextAreaValueActionCreator, postsDataType} from "../../../Redux/State";
+import store from "../../../Redux/State";
 
 
-export type MypostsTypes = {
-    postsData: Array<indexT>
+
+
+
+
+export type MypostsType = {
+    postsData: Array<postsDataType>,
+    dispatch:(action:any)=>void,
 };
 
-function MyPosts(props: MypostsTypes) {
 
-    let newpostData = props.postsData.map(p => <Post key={p.id} message={p.message} likes={p.likes}/>)
+
+
+function MyPosts(props: MypostsType) {
+
+
+
+
+    let newPostData = props.postsData.map(p => <Post key={p.id} message={p.message} likes={p.likes} dispatch={props.dispatch} id={p.id}/>)
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+
+     let addNewPost = ()=>{
+         props.dispatch(addNewPostActionCreator());
+     }
+
+     let newTextAreaValue =()=>{
+         if(newPostElement.current != null) {
+             let textNew = newPostElement.current.value
+             let action = newTextAreaValueActionCreator(textNew);
+             props.dispatch(action);
+         }
+     }
+
 
     return (
+
         <div className={C.postBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    {<textarea ref={newPostElement} onChange={newTextAreaValue} value={store.getState().profilePage.newPostText}/>}
                 </div>
                 <div>
-                    <button>Add</button>
+                    {<button onClick={addNewPost}>Add</button>}
                 </div>
             </div>
-            {newpostData}
+            {newPostData}
 
 
         </div>
