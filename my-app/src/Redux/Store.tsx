@@ -1,10 +1,10 @@
 import {v1} from "uuid";
+import profileReducer from "./profile-reduser";
+import dialogsReducer from "./dialogs-reduser";
+import sidebarReducer from "./sidebar-reduser";
 
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const ADD_LIKE = "ADD-LIKE";
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
-const SEND_MESSAGE = "SEND_MESSAGE";
+
+
 
 
 export type messagesDataType = {
@@ -32,7 +32,7 @@ export type dialogsPageType = {
     dialogsData:Array<dialogsDataType>
     newMessageBody:string,
 }
-type sidebarType = {}
+export type sidebarType = {}
 
 export type rootStateType = {
     profilePage:profilePageType,
@@ -97,52 +97,50 @@ let store:StoreType = {
 
 
     dispatch(action){
-if(action.type === ADD_POST){
-    let newPost:postsDataType={id:v1(),message:this._state.profilePage.newPostText,likes:0};
-    this._state.profilePage.postsData.unshift(newPost);
-    this._state.profilePage.newPostText = "";
-    this._callSubscriber(this._state);
-}
+        this._state.profilePage = profileReducer(this._state.profilePage,action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar,action);
 
-else if(action.type===UPDATE_NEW_POST_TEXT){
-    this._state.profilePage.newPostText = action.text;
-    this._callSubscriber(this._state);
-}
-
-else if(action.type === ADD_LIKE){
-    let f = this._state.profilePage.postsData.find(f=>f.id == action.id);/*попытка изменять лайки*/
-    if(f){
-        (f.likes) = (f.likes)+1;
-        console.log(f.likes);
         this._callSubscriber(this._state);
+// if(action.type === ADD_POST){
+//     let newPost:postsDataType={id:v1(),message:this._state.profilePage.newPostText,likes:0};
+//     this._state.profilePage.postsData.unshift(newPost);
+//     this._state.profilePage.newPostText = "";
+//     this._callSubscriber(this._state);
+// }
+//
+// else if(action.type===UPDATE_NEW_POST_TEXT){
+//     this._state.profilePage.newPostText = action.text;
+//     this._callSubscriber(this._state);
+// }
+//
+// else if(action.type === ADD_LIKE){
+//     let f = this._state.profilePage.postsData.find(f=>f.id == action.id);/*попытка изменять лайки*/
+//     if(f){
+//         (f.likes) = (f.likes)+1;
+//         console.log(f.likes);
+//         this._callSubscriber(this._state);
+//     }
+//     return
+// }
+// else if(action.type === UPDATE_NEW_MESSAGE_BODY){
+//   this._state.dialogsPage.newMessageBody = action.body;
+//   this._callSubscriber(this._state);
+//
+// }
+// else if(action.type === SEND_MESSAGE){
+//     this._state.dialogsPage.messagesData.push({id:v1(), text:this._state.dialogsPage.newMessageBody});
+//     this._state.dialogsPage.newMessageBody = "555";
+//     this._callSubscriber(this._state);
+//
+//
+// }
+
     }
-    return
 }
-else if(action.type === UPDATE_NEW_MESSAGE_BODY){
-  this._state.dialogsPage.newMessageBody = action.body;
-  this._callSubscriber(this._state);
-
-}
-else if(action.type === SEND_MESSAGE){
-    this._state.dialogsPage.messagesData.push({id:v1(), text:this._state.dialogsPage.newMessageBody});
-    this._state.dialogsPage.newMessageBody = "555";
-    this._callSubscriber(this._state);
-
-
-}
-
-    }
-}
-export const addNewPostActionCreator = ()=> ({type:ADD_POST});
-export const newTextAreaValueActionCreator = (textNew:string) =>({type:UPDATE_NEW_POST_TEXT, text: textNew});
-export const onLikeActionCreator = (id:string)=> ({type:ADD_LIKE,id:id});
-export const updateNewMessageBodyCreator =(body:string)=>({type:UPDATE_NEW_MESSAGE_BODY,body:body});
-export const sendMessageCreator =()=>({type:SEND_MESSAGE});
-
-
-
-
-
 export default store;
+
+// @ts-ignore
+window.store= store
 
 

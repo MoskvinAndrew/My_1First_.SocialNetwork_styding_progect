@@ -1,24 +1,28 @@
 import React, {ChangeEvent} from "react";
 import S from "../../dialogs.module.css";
-import {messagesDataType, sendMessageCreator, updateNewMessageBodyCreator} from "../../../../Redux/State";
+import {messagesDataType} from "../../../../Redux/Store";
 import Messages from "../../Messages/Messages";
 
 type ChatTypes={
      ava?: string,
-     dispatch:(action:any)=>void,
-     messagesData: Array<messagesDataType>,
+    messagesData: Array<messagesDataType>,
+    onNewMessage:(body:string)=>void,
+    onSendMessageClick:()=>void,
 }
 
 function Chat(props:ChatTypes){
 
 
- let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>)=> {
+ let NewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>)=> {
      let body = e.target.value;
-     props.dispatch(updateNewMessageBodyCreator(body));
+     console.log(body);
+     props.onNewMessage(body);
+
 
  }
-    let onSendMessageClick = ()=> {
-     props.dispatch(sendMessageCreator());
+    let SendMessageClick = ()=> {
+        props.onSendMessageClick();
+
     }
 
     let messagesArrayNew = props.messagesData.map(m => <Messages key= {m.id} id={m.id} text={m.text} messagesData={props.messagesData}/>)
@@ -28,8 +32,8 @@ function Chat(props:ChatTypes){
                 {messagesArrayNew}
             </div>
             <img className={S.avatar} src={props.ava}/>
-            <div><textarea onChange={onNewMessageChange} ></textarea></div>
-            <div><button onClick={onSendMessageClick}>Send</button></div>
+            <div><textarea onChange={NewMessageChange} ></textarea></div>
+            <div><button onClick={SendMessageClick}>Send</button></div>
         </div>
     )
 }

@@ -1,17 +1,20 @@
 import React from "react";
 import C from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import state, {addNewPostActionCreator, newTextAreaValueActionCreator, postsDataType} from "../../../Redux/State";
-import store from "../../../Redux/State";
-
-
-
-
+import state, { postsDataType} from "../../../Redux/Store";
+import store from "../../../Redux/Store";
+import {addNewPostActionCreator, newTextAreaValueActionCreator} from "../../../Redux/profile-reduser";
+import PostContainer from "./Post/PostContainer";
+import {StoreReduxType} from "../../../Redux/redux-store";
 
 
 export type MypostsType = {
     postsData: Array<postsDataType>,
     dispatch:(action:any)=>void,
+    onAddNewPost:()=>void,
+    onNewTextAreaValue:(textNew:string)=>void,
+    newPost:string,
+    store: StoreReduxType,
 };
 
 
@@ -20,22 +23,19 @@ export type MypostsType = {
 function MyPosts(props: MypostsType) {
 
 
-
-
-    let newPostData = props.postsData.map(p => <Post key={p.id} message={p.message} likes={p.likes} dispatch={props.dispatch} id={p.id}/>)
+    let newPostData = props.postsData.map(p => <PostContainer key={p.id} message={p.message}  likes={p.likes}  id={p.id} dispatch={props.dispatch} store={props.store} />)
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
      let addNewPost = ()=>{
-         props.dispatch(addNewPostActionCreator());
+         props.onAddNewPost();
      }
 
      let newTextAreaValue =()=>{
          if(newPostElement.current != null) {
-             let textNew = newPostElement.current.value
-             let action = newTextAreaValueActionCreator(textNew);
-             props.dispatch(action);
-         }
-     }
+             let textNew = newPostElement.current.value;
+             props.onNewTextAreaValue(textNew);
+
+         }}
 
 
     return (
@@ -44,14 +44,13 @@ function MyPosts(props: MypostsType) {
             <h3>My posts</h3>
             <div>
                 <div>
-                    {<textarea ref={newPostElement} onChange={newTextAreaValue} value={store.getState().profilePage.newPostText}/>}
+                    {<textarea ref={newPostElement} onChange={newTextAreaValue} value={props.newPost}/>}
                 </div>
                 <div>
                     {<button onClick={addNewPost}>Add</button>}
                 </div>
             </div>
             {newPostData}
-
 
         </div>
     )
