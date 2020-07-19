@@ -1,34 +1,37 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import S from "../../dialogs.module.css";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../../Redux/dialogs-reduser";
 import Chat from "./Chat";
-import store, {StoreReduxType} from "../../../../Redux/redux-store";
+import  {RootState, StoreReduxType} from "../../../../Redux/redux-store";
+import {connect} from "react-redux";
+
 
 type ChatTypes={
-     ava?: string,
-     dispatch:(action:any)=>void,
-     store: StoreReduxType,
+    dispatch:(action:any)=>void,
+    store: StoreReduxType,
+    state:RootState
 }
 
-function ChatContainer(props:ChatTypes){
 
 
- let onNewMessage = (body:string)=> {
-     props.dispatch(updateNewMessageBodyCreator(body));
-
- }
-    let onSendMessageClick = ()=> {
-     props.dispatch(sendMessageCreator());
+let mapStateToProps = (state: RootState)=>{
+    return{
+        messagesData:state.dialogsReducer.messagesData,
     }
-
-
-    return(
-
-            <div className={S.messages}>
-             <Chat  messagesData = {store.getState().dialogsReducer.messagesData}
-                    onNewMessage={onNewMessage}
-                   onSendMessageClick={onSendMessageClick}/>
-        </div>
-    )
 }
+ let mapDispatchToProps=(dispatch:any)=>{
+    return{
+        onNewMessage: (body:string)=>{
+            dispatch(updateNewMessageBodyCreator(body));
+        },
+        onSendMessageClick: ()=>{
+            dispatch(sendMessageCreator());
+
+        }
+    }
+ }
+
+
+const ChatContainer = connect(mapStateToProps,mapDispatchToProps)(Chat)
+
 export default ChatContainer;

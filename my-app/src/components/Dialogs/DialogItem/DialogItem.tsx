@@ -4,7 +4,6 @@ import React from "react";
 
 
 type DialogItemType = {
-
     id: string,
     name: string,
     ava: string,

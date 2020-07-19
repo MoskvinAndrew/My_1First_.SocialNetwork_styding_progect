@@ -5,8 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store, {RootState} from "./Redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
-import {rootStateType} from "./Redux/Store";
-
+import {Provider} from "react-redux";
 
 
 
@@ -14,10 +13,13 @@ export let rerenderEntireThree= (state:RootState) => {
     debugger
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()}
+            <Provider store={store}>
+            <App
+                state={store.getState()}
                  dispatch={store.dispatch.bind(store)}
                  store={store}
-                />
+            />
+            </Provider>
         </BrowserRouter>,
 
         document.getElementById('root')

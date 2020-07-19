@@ -29,15 +29,16 @@ debugger
             <Nav/>
             <div className='app-wrapper-content'>
 
-                <Route path='/Dialogs' render={() => <Dialogs dialogsData={props.state.dialogsReducer.dialogsData}
-                                                              messagesData={props.state.dialogsReducer.messagesData}/>}/>
+                <Route path='/Dialogs' render={() => <Dialogs
+                                                              dialogsData={props.state.dialogsReducer.dialogsData}
+                                                              messagesData={props.state.dialogsReducer.messagesData}
+                />}/>
                 <Route path='/Profile' render={() => <Profile store={props.store}
                                                               dispatch={props.dispatch}/>}/>
                 <Route path='/News' render={() => <News/>}/>
                 <Route path='/Music' render={() => <Music/>}/>
-                <Route exact path='/Chat' render={() => <ChatContainer store={props.store}
-                                                              dispatch={props.dispatch}/>}/>
-                                                             {/*messagesData={props.state.dialogsReducer.messagesData}*/}
+                <Route exact path='/Chat' render={() => <ChatContainer/>}/>
+
 
             </div>
 

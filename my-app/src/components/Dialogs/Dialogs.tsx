@@ -15,9 +15,6 @@ function Dialogs(props:DialogsType) {
 
 
     let dialogsArrayNew = props.dialogsData.map(d => <DialogItem   key= {d.id} id={d.id} ava={d.ava} name={d.name} />)
-
-    // let messagesArrayNew = props.messagesData.map(m => <Messages key= {m.id} id={m.id} text={m.text} messagesData={props.messagesData}/>)
-
     return (
 
         <div className={S.dialogs}>
