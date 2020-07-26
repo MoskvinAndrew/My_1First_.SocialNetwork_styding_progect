@@ -22,15 +22,15 @@ let initialState = {
 }
 
 const dialogsReducer=(state:dialogsPageType = initialState,action:any)=> {
-
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
-            return state;
+         return {...state,newMessageBody:action.body}     //сразу выводим в returnE для того чтобы не создавать переменную
         case SEND_MESSAGE:
-            state.messagesData.push({id: v1(), text: state.newMessageBody});
-            state.newMessageBody = "";
-            return state;
+            let copyState = {...state};    //создаем переменную и копируем стейт в нее и добавляем новый элемент в массив
+                                           // (другой способ)
+            copyState.messagesData = [...state.messagesData,{id: v1(), text: copyState.newMessageBody}];
+            copyState.newMessageBody = "";
+            return copyState;
         default:return state;
     }
 

@@ -22,27 +22,29 @@ const profileReducer = (state: profilePageType = initialState, action: any) => {
 
     switch (action.type) {
 
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.text;
-            return state;
+        case UPDATE_NEW_POST_TEXT:{
+            let copyState = {...state};
+            copyState.newPostText = action.text;
+            return copyState ;}
 
 
-        case ADD_POST:
-            let newPost: postsDataType = {id: v1(), message: state.newPostText, likes: 0};
-            state.postsData.unshift(newPost);
-            console.log(state.postsData)
-            state.newPostText = "";
-            return state;
+        case ADD_POST:{
+            let copyState = {...state};
+            let newPost: postsDataType = {id: v1(), message: copyState.newPostText, likes: 0};
+            copyState.postsData.unshift(newPost);
+            copyState.newPostText = "";
+            return copyState;}
 
 
 
          case ADD_LIKE:
-             let f = state.postsData.find(f => f.id == action.id);/*попытка изменять лайки*/
+             let newState = {...state};
+             newState.postsData = [...state.postsData];
+             let f = newState.postsData.find(f => f.id == action.id);/*попытка изменять лайки*/
              if (f) {
                  (f.likes) = (f.likes) + 1;
-                 return state;
+                 return newState;
              }
-
         default:
             return state;
 

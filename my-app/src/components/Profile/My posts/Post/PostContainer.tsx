@@ -2,7 +2,7 @@ import React from "react";
 import C from "../MyPosts.module.css";
 import {onLikeActionCreator} from "../../../../Redux/profile-reduser";
 import Post from "./Post";
-import {StoreReduxType} from "../../../../Redux/redux-store";
+
 
 
 
@@ -12,13 +12,7 @@ type PostContainerType = {
     likes: number,
     id:string,
     dispatch:(action:any)=>void,
-    store: StoreReduxType,
-
-
-
-
 }
-
 
 function PostContainer(props:PostContainerType) {
 
@@ -32,5 +26,6 @@ function PostContainer(props:PostContainerType) {
                       onLike={onLike}/>
     </div>)
 }
+
 
 export default PostContainer;

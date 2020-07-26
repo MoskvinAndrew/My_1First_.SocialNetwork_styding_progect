@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import S from "../../dialogs.module.css";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../../Redux/dialogs-reduser";
 import Chat from "./Chat";
@@ -7,9 +7,9 @@ import {connect} from "react-redux";
 
 
 type ChatTypes={
-    dispatch:(action:any)=>void,
-    store: StoreReduxType,
-    state:RootState
+    // dispatch:(action:any)=>void,
+    // store: StoreReduxType,
+    // state:RootState
 }
 
 
@@ -17,6 +17,7 @@ type ChatTypes={
 let mapStateToProps = (state: RootState)=>{
     return{
         messagesData:state.dialogsReducer.messagesData,
+        newMessageBody:state.dialogsReducer.newMessageBody,
     }
 }
  let mapDispatchToProps=(dispatch:any)=>{

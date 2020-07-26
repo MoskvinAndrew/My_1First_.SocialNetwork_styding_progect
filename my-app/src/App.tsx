@@ -12,16 +12,17 @@ import {rootStateType, StoreType} from "./Redux/Store";
 import store, {RootState, StoreReduxType} from "./Redux/redux-store";
 import profileReducer from "./Redux/profile-reduser";
 import ChatContainer from "./components/Dialogs/DialogItem/Chat/ChatContainer";
+import MyPostsContainer from "./components/Profile/My posts/MyPostsContainer";
 
 
 type AppTypes = {
-    state: RootState,
+    // state: RootState,
     dispatch: (action: any) => void,
-    store: StoreReduxType,
+    // store: StoreReduxType,
 };
 
 function App(props: AppTypes) {
-debugger
+
     return (
 
         <div className='app-wrapper'>
@@ -30,11 +31,13 @@ debugger
             <div className='app-wrapper-content'>
 
                 <Route path='/Dialogs' render={() => <Dialogs
-                                                              dialogsData={props.state.dialogsReducer.dialogsData}
-                                                              messagesData={props.state.dialogsReducer.messagesData}
+                                                              dialogsData={store.getState().dialogsReducer.dialogsData}
+                                                              messagesData={store.getState().dialogsReducer.messagesData}
                 />}/>
-                <Route path='/Profile' render={() => <Profile store={props.store}
-                                                              dispatch={props.dispatch}/>}/>
+                <Route path='/Profile' render={() => <Profile
+                    // store={props.store}
+                    dispatch={props.dispatch}
+                />}/>
                 <Route path='/News' render={() => <News/>}/>
                 <Route path='/Music' render={() => <Music/>}/>
                 <Route exact path='/Chat' render={() => <ChatContainer/>}/>

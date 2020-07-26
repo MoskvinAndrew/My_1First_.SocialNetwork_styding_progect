@@ -30,3 +30,12 @@ function Post(props: PostType) {
 }
 
 export default Post;
+
+// switch (action.type) {
+//     case UPDATE_NEW_MESSAGE_BODY:
+//         return {...state, newMessageBody: action.body};
+//     case SEND_MESSAGE:
+//         let newArrMessagesData = [...state.messagesData, {id: v1(), text: state.newMessageBody}]
+//         return {...state, messagesData: newArrMessagesData, newMessageBody: ''};
+//     default:return state;
+// }

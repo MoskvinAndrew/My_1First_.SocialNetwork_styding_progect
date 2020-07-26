@@ -10,14 +10,12 @@ import {Provider} from "react-redux";
 
 
 export let rerenderEntireThree= (state:RootState) => {
-    debugger
+
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
             <App
-                state={store.getState()}
-                 dispatch={store.dispatch.bind(store)}
-                 store={store}
+                dispatch={store.dispatch.bind(store)}
             />
             </Provider>
         </BrowserRouter>,
@@ -28,10 +26,10 @@ export let rerenderEntireThree= (state:RootState) => {
 
 rerenderEntireThree(store.getState());
 
-store.subscribe (()=> {
-    let state = store.getState();
-    rerenderEntireThree(state);
-});
+// store.subscribe (()=> {
+//     let state = store.getState();
+//     rerenderEntireThree(state);
+// });
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
