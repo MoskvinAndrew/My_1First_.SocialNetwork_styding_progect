@@ -22,6 +22,19 @@ export type postsDataType = {
     message:string,
     likes:number,
 }
+export type locationDataType ={
+    city:string,
+    country:string,
+}
+export type usersDataType = {
+    id:string,
+    followed:boolean,
+    fullName:string,
+    photoUrl:string,
+    status:string|number,
+    location:{city:string,
+    country:string,}
+}
 
 export type profilePageType = {
     postsData:Array<postsDataType>
@@ -32,12 +45,17 @@ export type dialogsPageType = {
     dialogsData:Array<dialogsDataType>
     newMessageBody:string,
 }
+export type usersPageType = {
+    users:Array<usersDataType>,
+
+}
 export type sidebarType = {}
 
 export type rootStateType = {
     profilePage:profilePageType,
     dialogsPage:dialogsPageType,
     sidebar:sidebarType,
+    usersPage:usersPageType,
 
 }
 
