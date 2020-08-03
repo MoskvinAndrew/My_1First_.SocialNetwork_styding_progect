@@ -18,10 +18,8 @@ import UsersContainer from "./components/Users/UsersContainer";
 
 
 type AppTypes = {
-    // state: RootState,
     dispatch: (action: any) => void,
-    // store: StoreReduxType,
-};
+}
 
 function App(props: AppTypes) {
 
@@ -32,8 +30,8 @@ function App(props: AppTypes) {
             <Nav/>
             <div className='app-wrapper-content'>
 
-                <Route path='/Dialogs' render={() => <Dialogs dialogsData={store.getState().dialogsReducer.dialogsData}
-                                                              messagesData={store.getState().dialogsReducer.messagesData}/>}/>
+                <Route path='/Dialogs' render={() => <Dialogs dialogsData={store.getState().dialogsPage.dialogsData}
+                                                              messagesData={store.getState().dialogsPage.messagesData}/>}/>
                 <Route path='/Profile' render={() => <Profile dispatch={props.dispatch}/>}/>
                 <Route path='/News' render={() => <News/>}/>
                 <Route path='/Music' render={() => <Music/>}/>

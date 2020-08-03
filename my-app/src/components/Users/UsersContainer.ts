@@ -1,13 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
-import Users from "./Users";
+
 import {RootState} from "../../Redux/redux-store";
 import {followAC, setUsersAC, unfollowAC} from "../../Redux/users-reduser";
+import Users from "./Users";
+
+
 
 
 let mapStateToProps = (state:RootState)=>{
-    return{
-    users:state.usersReducer.users
+
+        return{
+    users:state.UsersPage.users
+
     }}
 let mapDispatchToProps=(dispatch:any)=>{
     return{

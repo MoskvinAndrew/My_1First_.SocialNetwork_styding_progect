@@ -44,8 +44,8 @@ import {connect} from "react-redux";
 
 const mapStateToProps=(state: RootState)=>{
     return{
-        newPost:state.profileReducer.newPostText,
-        postsData:state.profileReducer.postsData,
+        newPost:state.profilePage.newPostText,
+        postsData:state.profilePage.postsData,
 
     }
 }

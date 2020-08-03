@@ -16,8 +16,8 @@ type ChatTypes={
 
 let mapStateToProps = (state: RootState)=>{
     return{
-        messagesData:state.dialogsReducer.messagesData,
-        newMessageBody:state.dialogsReducer.newMessageBody,
+        messagesData:state.dialogsPage.messagesData,
+        newMessageBody:state.dialogsPage.newMessageBody,
     }
 }
  let mapDispatchToProps=(dispatch:any)=>{

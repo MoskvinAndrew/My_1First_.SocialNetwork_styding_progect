@@ -8,8 +8,13 @@ export type StoreReduxType = typeof store
 export type RootState = ReturnType<typeof redusers>
 
 
+let redusers = combineReducers({
+   profilePage:profileReducer,
+    dialogsPage:dialogsReducer,
+    sidebarPage:sidebarReducer,
+    UsersPage:usersReducer,
 
-let redusers = combineReducers({profileReducer,dialogsReducer,sidebarReducer,usersReducer});
+});
 
 let store = createStore(redusers);
 
