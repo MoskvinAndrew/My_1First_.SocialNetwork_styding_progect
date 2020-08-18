@@ -47,6 +47,9 @@ export type dialogsPageType = {
 }
 export type usersPageType = {
     users:Array<usersDataType>,
+    pageSize:number,
+    totalUsersCount:number,
+    currentPage:number
 
 }
 export type sidebarType = {}

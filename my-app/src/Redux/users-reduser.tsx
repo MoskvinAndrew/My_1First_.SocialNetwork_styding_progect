@@ -3,6 +3,8 @@ import {usersPageType} from "./Store";
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
 
 export type followACType = {
     type: typeof FOLLOW,
@@ -18,7 +20,15 @@ export type setUsersACType = {
     type: typeof SET_USERS,
     users: any
 };
-type ActionsType = followACType | unfollowACType | setUsersACType
+export type totalUsersCountACType = {
+    type:typeof SET_TOTAL_USER_COUNT,
+    totalUsersCount:number
+}
+export type setCurrentPageACType = {
+    type:typeof SET_CURRENT_PAGE
+    currentPage:number
+}
+type ActionsType = followACType | unfollowACType | setUsersACType| totalUsersCountACType|setCurrentPageACType
 
 
 // let initialState:usersPageType = {
@@ -59,7 +69,11 @@ type ActionsType = followACType | unfollowACType | setUsersACType
 //
 //     ]
 // }
-let initialState = {users: []}
+let initialState = {users: [],
+    pageSize:10,
+    totalUsersCount:100,
+    currentPage:1
+}
 
 const usersReducer = (state:usersPageType = initialState, action: ActionsType) => {
 
@@ -84,9 +98,25 @@ const usersReducer = (state:usersPageType = initialState, action: ActionsType) =
                 return u
             })};
 
+
+
         case SET_USERS:
             let copyState={...state}
-            return {...copyState,users:[...copyState.users,...action.users]}
+
+            return {...copyState,users:action.users}
+
+        case SET_TOTAL_USER_COUNT:{
+            let copyState={...state}
+
+            return {...copyState,totalUsersCount:action.totalUsersCount}}
+
+        case SET_CURRENT_PAGE:{
+            let copyState={...state}
+debugger
+            return {...copyState,currentPage:action.currentPage}}
+
+
+
 
 
 
@@ -103,11 +133,8 @@ const usersReducer = (state:usersPageType = initialState, action: ActionsType) =
 export const followAC = (userID: string): followACType => ({type: 'FOLLOW', userID});
 export const unfollowAC = (userID: string): unfollowACType => ({type: 'UNFOLLOW', userID});
 export const setUsersAC = (users: any): setUsersACType => ({type: 'SET_USERS', users});
+export const totalUsersCountAC = (totalUsersCount: number): totalUsersCountACType => ({type: 'SET_TOTAL_USER_COUNT', totalUsersCount});
+export const setCurrentPageAC = (currentPage:number):setCurrentPageACType =>({type:'SET_CURRENT_PAGE',currentPage})
 
 export default usersReducer;
 
-// let copyState = {...state};
-// if (action.type == 'SET_USERS' ) {
-//     return   {...copyState,users:[...copyState.users,...action.users]}
-//
-// }

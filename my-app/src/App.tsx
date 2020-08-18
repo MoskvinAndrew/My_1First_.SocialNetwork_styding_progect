@@ -13,7 +13,7 @@ import store, {RootState, StoreReduxType} from "./Redux/redux-store";
 import profileReducer from "./Redux/profile-reduser";
 import ChatContainer from "./components/Dialogs/DialogItem/Chat/ChatContainer";
 import MyPostsContainer from "./components/Profile/My posts/MyPostsContainer";
-import Users from "./components/Users/Users";
+// import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
 
 
