@@ -26,7 +26,7 @@ function Dialogs(props:DialogsType) {
 
 
             <div className={S.messages}>
-                {/*{messagesArrayNew}*/}
+
             </div>
         </div>
 

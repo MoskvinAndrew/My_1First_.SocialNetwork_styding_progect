@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Header from "./components/header/header";
 import Nav from "./components/nav/nav";
-import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
@@ -15,6 +14,8 @@ import ChatContainer from "./components/Dialogs/DialogItem/Chat/ChatContainer";
 import MyPostsContainer from "./components/Profile/My posts/MyPostsContainer";
 // import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type AppTypes = {
@@ -23,6 +24,7 @@ type AppTypes = {
 
 function App(props: AppTypes) {
 
+
     return (
 
         <div className='app-wrapper'>
@@ -30,13 +32,12 @@ function App(props: AppTypes) {
             <Nav/>
             <div className='app-wrapper-content'>
 
-                <Route path='/Dialogs' render={() => <Dialogs dialogsData={store.getState().dialogsPage.dialogsData}
-                                                              messagesData={store.getState().dialogsPage.messagesData}/>}/>
-                <Route path='/Profile' render={() => <Profile dispatch={props.dispatch}/>}/>
+                <Route path='/Dialogs' render={() => <DialogsContainer/>}/>
+                <Route path='/Profile/:userId?' render={() => <ProfileContainer/>}/>
                 <Route path='/News' render={() => <News/>}/>
                 <Route path='/Music' render={() => <Music/>}/>
                 <Route exact path='/Chat' render={() => <ChatContainer/>}/>
-                <Route exact path='/users' render={() => <UsersContainer/>}/>
+                <Route exact path='/users' render={() => <UsersContainer />}/>
 
 
             </div>

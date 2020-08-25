@@ -5,6 +5,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
+const IS_FETCHING_LOADER = 'IS_FETCHING_LOADER'
 
 export type followACType = {
     type: typeof FOLLOW,
@@ -28,7 +29,11 @@ export type setCurrentPageACType = {
     type:typeof SET_CURRENT_PAGE
     currentPage:number
 }
-type ActionsType = followACType | unfollowACType | setUsersACType| totalUsersCountACType|setCurrentPageACType
+export type setIsFetchingACType = {
+    type: typeof IS_FETCHING_LOADER,
+    isFetching:boolean
+}
+type ActionsType = followACType | unfollowACType | setUsersACType| totalUsersCountACType|setCurrentPageACType|setIsFetchingACType
 
 
 // let initialState:usersPageType = {
@@ -72,7 +77,8 @@ type ActionsType = followACType | unfollowACType | setUsersACType| totalUsersCou
 let initialState = {users: [],
     pageSize:10,
     totalUsersCount:100,
-    currentPage:1
+    currentPage:1,
+    isFetching:false,
 }
 
 const usersReducer = (state:usersPageType = initialState, action: ActionsType) => {
@@ -110,15 +116,14 @@ const usersReducer = (state:usersPageType = initialState, action: ActionsType) =
 
             return {...copyState,totalUsersCount:action.totalUsersCount}}
 
-        case SET_CURRENT_PAGE:{
-            let copyState={...state}
-debugger
-            return {...copyState,currentPage:action.currentPage}}
+        case SET_CURRENT_PAGE: {
+            let copyState = {...state}
+                 return{...copyState,currentPage:action.currentPage}}
 
+        case IS_FETCHING_LOADER:{
+                let copyState = {...state}
 
-
-
-
+                return {...copyState, isFetching: action.isFetching}}
 
 
 
@@ -135,6 +140,7 @@ export const unfollowAC = (userID: string): unfollowACType => ({type: 'UNFOLLOW'
 export const setUsersAC = (users: any): setUsersACType => ({type: 'SET_USERS', users});
 export const totalUsersCountAC = (totalUsersCount: number): totalUsersCountACType => ({type: 'SET_TOTAL_USER_COUNT', totalUsersCount});
 export const setCurrentPageAC = (currentPage:number):setCurrentPageACType =>({type:'SET_CURRENT_PAGE',currentPage})
+export const setIsFetchingAC = (isFetching:boolean):setIsFetchingACType =>({type:'IS_FETCHING_LOADER',isFetching})
 
 export default usersReducer;
 

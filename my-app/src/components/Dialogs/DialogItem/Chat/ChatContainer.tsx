@@ -1,16 +1,9 @@
 import React, {useState} from "react";
-import S from "../../dialogs.module.css";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../../Redux/dialogs-reduser";
 import Chat from "./Chat";
 import  {RootState, StoreReduxType} from "../../../../Redux/redux-store";
 import {connect} from "react-redux";
 
-
-type ChatTypes={
-    // dispatch:(action:any)=>void,
-    // store: StoreReduxType,
-    // state:RootState
-}
 
 
 

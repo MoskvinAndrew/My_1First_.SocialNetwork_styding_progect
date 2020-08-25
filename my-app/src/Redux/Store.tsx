@@ -39,6 +39,7 @@ export type usersDataType = {
 export type profilePageType = {
     postsData:Array<postsDataType>
     newPostText:string,
+    userProfile:any
 }
 export type dialogsPageType = {
     messagesData:Array<messagesDataType>
@@ -49,7 +50,8 @@ export type usersPageType = {
     users:Array<usersDataType>,
     pageSize:number,
     totalUsersCount:number,
-    currentPage:number
+    currentPage:number,
+    isFetching:boolean
 
 }
 export type sidebarType = {}
@@ -69,6 +71,15 @@ export type StoreType = {
     subscribe: (observer: (state: rootStateType)=> void) => void
     dispatch:(action:any)=>void,
 
+}
+export type AuthDataType = {
+    data:{
+        id: number|null,
+        login: string|null,
+        email: string|null
+    },
+    messages: Array<any>,
+    resultCode: number|null,
 }
 //
 //

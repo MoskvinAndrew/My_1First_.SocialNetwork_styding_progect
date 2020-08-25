@@ -1,13 +1,15 @@
 import React from "react";
 import C from "./MyPosts.module.css";
-import {addNewPostActionCreator, newTextAreaValueActionCreator} from "../../../Redux/profile-reduser";
+import {
+    addNewPostActionCreator,
+    newTextAreaValueActionCreator,
+    onLikeActionCreator
+} from "../../../Redux/profile-reduser";
 import {RootState, StoreReduxType} from "../../../Redux/redux-store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
- type MypostsType = {
-     dispatch:(action:any)=>void,
- };
+type MypostsType = {};
 
 
 // function MyPostsContainer (props: MypostsType) {
@@ -42,21 +44,26 @@ import {connect} from "react-redux";
 //
 // };
 
-const mapStateToProps=(state: RootState)=>{
-    return{
-        newPost:state.profilePage.newPostText,
-        postsData:state.profilePage.postsData,
+const mapStateToProps = (state: RootState) => {
+    return {
+        newPost: state.profilePage.newPostText,
+        postsData: state.profilePage.postsData,
 
     }
 }
-const mapDispatchToProps=(dispatch:any)=>{
-    return{
-        onNewTextAreaValue:(textNew:string)=>{
-            dispatch(newTextAreaValueActionCreator(textNew))},
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        onNewTextAreaValue: (textNew: string) => {
+            dispatch(newTextAreaValueActionCreator(textNew))
+        },
 
-        onAddNewPost:()=>{
+        onAddNewPost: () => {
             dispatch(addNewPostActionCreator());
+        },
+        onOnLikeActionCreator: (id: string) => {
+            dispatch(onLikeActionCreator(id))
+        }
     }
-}}
-const MyPostsContainer: any = connect(mapStateToProps,mapDispatchToProps)(MyPosts)
+}
+const MyPostsContainer: any = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 export default MyPostsContainer;

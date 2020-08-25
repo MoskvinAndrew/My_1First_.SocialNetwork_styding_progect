@@ -11,7 +11,7 @@ export type MypostsType = {
     onAddNewPost:()=>void,
     onNewTextAreaValue:(textNew:string)=>void,
     newPost:string,
-    dispatch:(action:any)=>void,
+    onOnLikeActionCreator:(id:string)=>void
 
 };
 
@@ -19,7 +19,7 @@ export type MypostsType = {
 
 
 function MyPosts(props: MypostsType) {
-    let newPostData = props.postsData.map(p => <PostContainer key={p.id} message={p.message}  likes={p.likes}  id={p.id} dispatch={props.dispatch}  />)
+    let newPostData = props.postsData.map(p => <PostContainer key={p.id} message={p.message}  likes={p.likes}  id={p.id} onOnLikeActionCreator={props.onOnLikeActionCreator}  />)
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
      let addNewPost = ()=>{

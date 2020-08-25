@@ -5,8 +5,11 @@ import {postsDataType, profilePageType} from "./Store";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_LIKE = "ADD-LIKE";
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
+
+    userProfile:null,
     newPostText: "",
     postsData: [
         {id: v1(), message: 'How are you?', likes: 12},
@@ -45,6 +48,10 @@ const profileReducer = (state: profilePageType = initialState, action: any) => {
                 (f.likes) = (f.likes) + 1;
                 return newState;
             }
+        case SET_USER_PROFILE:
+            let copystate = {...state};
+
+            return {...copystate,userProfile:action.userProfile}
         default:
             return state;
 
@@ -53,6 +60,7 @@ const profileReducer = (state: profilePageType = initialState, action: any) => {
 
 export const addNewPostActionCreator = () => ({type: ADD_POST});
 export const newTextAreaValueActionCreator = (textNew: string) => ({type: UPDATE_NEW_POST_TEXT, text: textNew});
-export const onLikeActionCreator = (id: string) => ({type: ADD_LIKE, id: id});
+export const onLikeActionCreator = (id: string) => ({type: ADD_LIKE, id});
+export const setUserProfile = (userProfile:any) =>({type:SET_USER_PROFILE,userProfile});
 
 export default profileReducer;
