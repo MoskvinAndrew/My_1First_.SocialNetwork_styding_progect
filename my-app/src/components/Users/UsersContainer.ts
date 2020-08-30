@@ -4,7 +4,7 @@ import {RootState} from "../../Redux/redux-store";
 import {
     followAC,
     setCurrentPageAC,
-    setIsFetchingAC,
+    setIsFetchingAC, setTogleFollowingProgres,
     setUsersAC,
     totalUsersCountAC,
     unfollowAC
@@ -18,41 +18,19 @@ let mapStateToProps = (state: RootState) => {
         pageSize: state.UsersPage.pageSize,
         totalUsersCount: state.UsersPage.totalUsersCount,
         currentPage: state.UsersPage.currentPage,
-        isFetching: state.UsersPage.isFetching
+        isFetching: state.UsersPage.isFetching,
+        disableButtons:state.UsersPage.disableButtons
 
     }
 }
-//let mapDispatchToProps = (dispatch: any) => {
-//     return {
-//         onFollow: (userID: string) => {
-//             dispatch(followAC(userID))
-//         },
-//         onUnFollow: (userID: string) => {
-//             dispatch(unfollowAC(userID))
-//         },
-//         onSetUsersAC: (users: any) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         onTotalUsersCountAC: (totalUsersCount: number) => {
-//             dispatch(totalUsersCountAC(totalUsersCount))
-//         },
-//         onSetCurrentPageAC: (currentPage: number) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//
-//         onSetIsFetchingAC: (isFetching:boolean) => {
-//             dispatch(setIsFetchingAC(isFetching))
-//         }
-//
-//
-//
-//     }
-// }
-//
+
 
 const UsersContainer = connect(mapStateToProps,{follow:followAC, unfollow:unfollowAC,
     setUsers:setUsersAC,
-    totalUsersCountac:totalUsersCountAC,
+    totalUsersCountAC:totalUsersCountAC,
     setCurrentPage:setCurrentPageAC,
-    setIsFetching:setIsFetchingAC})(UsersApiContain)
+    setIsFetching:setIsFetchingAC,
+    setTogleFollowingProgres:setTogleFollowingProgres,
+
+})(UsersApiContain)
 export default UsersContainer

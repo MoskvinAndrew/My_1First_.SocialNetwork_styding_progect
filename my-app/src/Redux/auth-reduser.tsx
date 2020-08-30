@@ -1,41 +1,44 @@
 import {v1} from "uuid";
-import {AuthDataType, postsDataType, profilePageType} from "./Store";
+import {AuthDataType, odbjDataType, postsDataType, profilePageType} from "./Store";
 
 
 
 const SET_USER_AUTH_DATA = 'SET_USER_AUTH_DATA';
+const SET_AUTH_RESULT_CODE = 'SET_AUTH_RESULT_CODE';
 
 export type setAuthUserDataType = {
     type:typeof SET_USER_AUTH_DATA,
-    data:{
-        id: number|null,
-        login: string|null,
-        email: string|null
-    }
+    data:odbjDataType,
 }
-
+export type setAuthResultCodeType = {
+    type:typeof SET_AUTH_RESULT_CODE,
+    resultCode:number,
+}
 
 let initialState = {
     data:{
         id: null,
+        email: null,
         login: null,
-        email: null
+
     },
     messages: [],
     resultCode: null,
 }
 
-type ActionsType = setAuthUserDataType
+type ActionsType = setAuthUserDataType|setAuthResultCodeType
 
-const authReduser = (state: AuthDataType = initialState, action: ActionsType) => {
+const authReducer = (state: AuthDataType = initialState, action: ActionsType) => {
 
     switch (action.type) {
 
         case SET_USER_AUTH_DATA:
-            return {
-                ...state,
-                ...action.data
-            };
+            return {...state, data:action.data};
+
+        case SET_AUTH_RESULT_CODE: {
+            return{...state,resultCode:action.resultCode}
+
+        }
 
 
             default:
@@ -43,6 +46,6 @@ const authReduser = (state: AuthDataType = initialState, action: ActionsType) =>
 
     }
 }
-export const setAuthUserData = (id:number,login:string,email:string):setAuthUserDataType =>({type:'SET_USER_AUTH_DATA',data:{id,login,email}});
-
-export default authReduser;
+export const setAuthUserData = (id:number,email:string,login:string):setAuthUserDataType =>({type:'SET_USER_AUTH_DATA',data:{id,email,login}});
+export const setAuthResultCode = (resultCode:number):setAuthResultCodeType => ({type: 'SET_AUTH_RESULT_CODE',resultCode})
+export default authReducer;

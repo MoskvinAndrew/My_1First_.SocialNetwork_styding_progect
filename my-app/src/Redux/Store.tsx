@@ -51,7 +51,8 @@ export type usersPageType = {
     pageSize:number,
     totalUsersCount:number,
     currentPage:number,
-    isFetching:boolean
+    isFetching:boolean,
+    disableButtons:Array<number|null>,
 
 }
 export type sidebarType = {}
@@ -72,12 +73,15 @@ export type StoreType = {
     dispatch:(action:any)=>void,
 
 }
+export type odbjDataType = {
+    id: number|null,
+    login: string|null,
+    email: string|null
+}
+
+
 export type AuthDataType = {
-    data:{
-        id: number|null,
-        login: string|null,
-        email: string|null
-    },
+    data:odbjDataType,
     messages: Array<any>,
     resultCode: number|null,
 }

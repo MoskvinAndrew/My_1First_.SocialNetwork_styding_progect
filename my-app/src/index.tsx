@@ -15,7 +15,7 @@ export let rerenderEntireThree= (state:RootState) => {
         <BrowserRouter>
             <Provider store={store}>
             <App
-                dispatch={store.dispatch.bind(store)}
+                // dispatch={store.dispatch.bind(store)}
             />
             </Provider>
         </BrowserRouter>,

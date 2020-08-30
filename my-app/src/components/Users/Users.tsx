@@ -2,6 +2,7 @@ import S from "./Users.module.css";
 import React from "react";
 import {usersDataType} from "../../Redux/Store";
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../api/api";
 
 export type UsersTypes = {
     onClickHandler: (p: number) => void
@@ -11,6 +12,8 @@ export type UsersTypes = {
     unfollow: (id: string) => void
     totalUsersCount: number
     pageSize: number
+    disableButtons:Array<number|null>
+    setTogleFollowingProgres:(isFetching:boolean,id:number)=>void,
 }
 
 
@@ -36,9 +39,32 @@ export let UsersFunctional = (props: UsersTypes) => {
             </NavLink>
         </div>
         <div>
-            {u.followed ?
-                <button onClick={() => props.FollowAC(u.id)}>Follow</button> :
-                <button onClick={() => props.unfollow(u.id)}>Unfollow</button>}
+            {u.followed ? <button disabled={props.disableButtons.some(id=>id === u.id)} onClick={() => {
+                props.setTogleFollowingProgres(true,u.id);
+                usersAPI.followUnfollow(u.id).then((data: any) => {
+                        if (data.resultCode === 0) {
+                            props.unfollow(u.id);
+                            props.setTogleFollowingProgres(false,u.id);
+                        }
+
+                    })
+                }}>unFollow</button> :
+
+                <button disabled={props.disableButtons.some(id=>id==u.id)} onClick={() => {
+                    props.setTogleFollowingProgres(true,u.id);
+                    usersAPI.UnfollowFollow(u.id).then((data: any) => {
+                        if (data.resultCode === 0) {
+                            props.FollowAC(u.id);
+                            props.setTogleFollowingProgres(false,u.id);
+                        }
+                    })
+                }}>Follow</button>
+            }
+
+
+
+
+
 
         </div>
          </span>

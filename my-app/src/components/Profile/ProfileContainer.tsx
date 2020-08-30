@@ -37,7 +37,8 @@ class ProfileContainer extends React.Component<ProfileContainerType>{
 
         return(
         <div className={P.content}>
-            <Profile userProfile={this.props.userProfile}/>
+            <Profile userProfile={this.props.userProfile}
+               />
         </div>
 
         )
@@ -46,6 +47,6 @@ class ProfileContainer extends React.Component<ProfileContainerType>{
 let mapStateToProps = (state:RootState) =>({
     userProfile:state.profilePage.userProfile,
 })
-// @ts-ignore
+
 // let ComponentWitchReadURL = withRouter(ProfileContainer);
 export default withRouter(connect(mapStateToProps, {setUserProfile})(ProfileContainer)) ;
