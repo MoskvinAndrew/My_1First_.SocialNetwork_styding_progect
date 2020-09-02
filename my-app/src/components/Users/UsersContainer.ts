@@ -2,11 +2,10 @@ import React from 'react';
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
 import {
-    followAC,
+    Follow,
+    followAC, getUsers,
     setCurrentPageAC,
-    setIsFetchingAC, setTogleFollowingProgres,
-    setUsersAC,
-    totalUsersCountAC,
+    setTogleFollowingProgres, UnFollow,
     unfollowAC
 } from "../../Redux/users-reduser";
 import UsersApiContain from "./UsersApiContainer";
@@ -25,12 +24,11 @@ let mapStateToProps = (state: RootState) => {
 }
 
 
-const UsersContainer = connect(mapStateToProps,{follow:followAC, unfollow:unfollowAC,
-    setUsers:setUsersAC,
-    totalUsersCountAC:totalUsersCountAC,
+const UsersContainer = connect(mapStateToProps,
+{
     setCurrentPage:setCurrentPageAC,
-    setIsFetching:setIsFetchingAC,
-    setTogleFollowingProgres:setTogleFollowingProgres,
+    UnFollow, getUsers,Follow
 
-})(UsersApiContain)
+}
+)(UsersApiContain)
 export default UsersContainer

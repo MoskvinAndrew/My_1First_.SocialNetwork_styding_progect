@@ -8,12 +8,12 @@ export type UsersTypes = {
     onClickHandler: (p: number) => void
     currentPage: number
     users: Array<usersDataType>
-    FollowAC: (id: string) => void
-    unfollow: (id: string) => void
     totalUsersCount: number
     pageSize: number
     disableButtons:Array<number|null>
-    setTogleFollowingProgres:(isFetching:boolean,id:number)=>void,
+    UnFollow:(userId:number)=>void,
+    Follow:(userId:number)=>void,
+
 }
 
 
@@ -40,32 +40,10 @@ export let UsersFunctional = (props: UsersTypes) => {
         </div>
         <div>
             {u.followed ? <button disabled={props.disableButtons.some(id=>id === u.id)} onClick={() => {
-                props.setTogleFollowingProgres(true,u.id);
-                usersAPI.followUnfollow(u.id).then((data: any) => {
-                        if (data.resultCode === 0) {
-                            props.unfollow(u.id);
-                            props.setTogleFollowingProgres(false,u.id);
-                        }
-
-                    })
-                }}>unFollow</button> :
-
+                props.UnFollow(u.id)}}>unFollow</button> :
                 <button disabled={props.disableButtons.some(id=>id==u.id)} onClick={() => {
-                    props.setTogleFollowingProgres(true,u.id);
-                    usersAPI.UnfollowFollow(u.id).then((data: any) => {
-                        if (data.resultCode === 0) {
-                            props.FollowAC(u.id);
-                            props.setTogleFollowingProgres(false,u.id);
-                        }
-                    })
-                }}>Follow</button>
+                    props.Follow(u.id)}}>Follow</button>
             }
-
-
-
-
-
-
         </div>
          </span>
                 <span>

@@ -27,7 +27,7 @@ export type locationDataType ={
     country:string,
 }
 export type usersDataType = {
-    id:string,
+    id:number,
     followed:boolean,
     fullName:string,
     photoUrl:string,

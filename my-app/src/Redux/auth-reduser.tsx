@@ -1,5 +1,6 @@
 import {v1} from "uuid";
 import {AuthDataType, odbjDataType, postsDataType, profilePageType} from "./Store";
+import {usersAPI} from "../api/api";
 
 
 
@@ -23,7 +24,7 @@ let initialState = {
 
     },
     messages: [],
-    resultCode: null,
+    resultCode: 0
 }
 
 type ActionsType = setAuthUserDataType|setAuthResultCodeType
@@ -48,4 +49,17 @@ const authReducer = (state: AuthDataType = initialState, action: ActionsType) =>
 }
 export const setAuthUserData = (id:number,email:string,login:string):setAuthUserDataType =>({type:'SET_USER_AUTH_DATA',data:{id,email,login}});
 export const setAuthResultCode = (resultCode:number):setAuthResultCodeType => ({type: 'SET_AUTH_RESULT_CODE',resultCode})
+
+export const AuthMeThunk = () =>{
+
+    return(dispatch:any)=>{
+        usersAPI.AuthMe().then((data) => {
+            // let {id,email,login} = data;
+            dispatch(setAuthUserData(data.data.id,data.data.email,data.data.login));
+            dispatch(setAuthResultCode(data.resultCode));
+        })
+    }
+}
+
+
 export default authReducer;

@@ -12,18 +12,32 @@ export const usersAPI = {
             .then(response => {
                 return response.data});
     },
-    followUnfollow(id:number){
+    Unfollow(id:number){
         return instanse.delete(`follow/${id}`)
             .then(response =>{
                 return response.data
             })
     },
-    UnfollowFollow(id:number){
+    Follow(id:number){
         return instanse.post(`follow/${id}`)
             .then(response =>{
                 return response.data
             })
     },
+    AuthMe(){
+   return instanse.get(`auth/me`)
+        .then(response => {
+
+            return  response.data;
+
+        })
+    },
+UsersProfileSet(userId:number){
+   return instanse.get(`profile/`+ userId)
+        .then(response => {
+           return response.data;
+        })}
+
 
 }
 

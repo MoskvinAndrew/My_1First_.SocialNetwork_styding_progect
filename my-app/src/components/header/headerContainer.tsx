@@ -2,12 +2,14 @@ import React from "react";
 import axios from "axios";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {setAuthResultCode, setAuthUserData} from "../../Redux/auth-reduser";
+import {AuthMeThunk, setAuthResultCode, setAuthUserData} from "../../Redux/auth-reduser";
 import {Header} from "./header";
+import {usersAPI} from "../../api/api";
 
 export type HeaderContainerPropsType = {
     setAuthUserData: (id: number, login: string, email: string) => void,
     setAuthResultCode:(resultCode:number)=>void,
+    AuthMeThunk:()=>void,
 
 
 }
@@ -16,17 +18,13 @@ export type HeaderContainerPropsType = {
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
 
     componentDidMount() {
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
-            .then((response: any) => {
-                console.log(response.data.data)
-                let {id,email,login} = response.data.data;
-                this.props.setAuthUserData(id,email,login);
-                this.props.setAuthResultCode(response.data.resultCode);
-
-
-
-            })
+        // usersAPI.AuthMe().then((data) => {
+        //         console.log(data);
+        //         let {id,email,login} = data;
+        //         this.props.setAuthUserData(id,email,login);
+        //         this.props.setAuthResultCode(data.resultCode);
+        // })
+        this.props.AuthMeThunk();
     }
 
     render() {
@@ -38,11 +36,17 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType> {
 }
 
 let mapStateToProps = (state: RootState) => {
+
     return{
-   auth:state.auth.resultCode,
+
+         auth:state.auth.resultCode,
+        login:state.auth.data.login,
     }}
 
 export default connect(mapStateToProps, {
-    setAuthUserData: setAuthUserData,
-    setAuthResultCode: setAuthResultCode,
+     setAuthUserData,
+    setAuthResultCode,
+    AuthMeThunk,
+
+
 })(HeaderContainer);
