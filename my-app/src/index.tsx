@@ -9,22 +9,20 @@ import {Provider} from "react-redux";
 
 
 
-export let rerenderEntireThree= (state:RootState) => {
+// export let rerenderEntireThree= (state:RootState) => {   //кусок старого стора,пока боюсь удалять
 
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-            <App
-                // dispatch={store.dispatch.bind(store)}
-            />
+            <App/>
             </Provider>
         </BrowserRouter>,
 
         document.getElementById('root')
     );
-}
 
-rerenderEntireThree(store.getState());
+// }
+//  rerenderEntireThree(store.getState());    //кусок старого стора,пока боюсь удалять
 
 // store.subscribe (()=> {
 //     let state = store.getState();

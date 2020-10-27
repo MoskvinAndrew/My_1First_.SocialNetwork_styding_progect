@@ -2,36 +2,42 @@ import React from 'react';
 import S from './dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import { dialogsDataType,messagesDataType} from "../../Redux/Store";
+import { Redirect } from 'react-router-dom';
 
 
 
 type DialogsType = {
     dialogsData: Array<dialogsDataType>,
     messagesData: Array<messagesDataType>,
+    auth:number|null
 
 };
 
 function Dialogs(props:DialogsType) {
+    if(props.auth == 1){
+       return <Redirect to= '/login' />
+    }
+    else{
 
 
-    let dialogsArrayNew = props.dialogsData.map(d => <DialogItem   key= {d.id} id={d.id} ava={d.ava} name={d.name} />)
-    return (
+    let dialogsArrayNew = props.dialogsData.map(d => <DialogItem   key= {d.id} id={d.id} ava={d.ava} name={d.name} />);
 
-        <div className={S.dialogs}>
+            return (
 
-
+            <div className={S.dialogs}>
             <div className={S.dialogsItems}>
-                {dialogsArrayNew}
+            {dialogsArrayNew}
             </div>
 
 
             <div className={S.messages}>
 
+
             </div>
-        </div>
+            </div>)
 
-            )
+
+
+        }
 }
-
-
 export default Dialogs;

@@ -1,5 +1,6 @@
 import React from "react";
 import C from "../MyPosts.module.css";
+import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp';
 
 
 
@@ -18,14 +19,13 @@ function Post(props: PostType) {
     const Like =()=>{
         props.onLike(props.id);
     }
-    return (<div className={C.item}>
-
-
-
-        <img src="https://www.meme-arsenal.com/memes/335bf12b9769dbcefc4de998cd023aae.jpg"/>
-        {props.message}
-        <div>like {props.likes}</div>
-        <div className={C.heart} onClick={Like}><img src = "https://cdn-s-static.arzamas.academy/storage/microrubric_entry/557/preview_icon_picture-3c3e73b7-cf02-4515-83d5-f79b5261345a.png"/></div>
+    return (
+        <div className={C.item}>
+            <div className={C.contentPost}>
+           <div className={C.postImg}><img src="https://www.meme-arsenal.com/memes/335bf12b9769dbcefc4de998cd023aae.jpg"/> </div>
+            <div className={C.message} >{props.message}</div>
+            <div className={C.heart} onClick={Like}><div className={C.likeCounter}>{props.likes}</div><div><FavoriteBorderSharpIcon/></div></div>
+            </div>
     </div>)
 }
 

@@ -1,20 +1,29 @@
 .postBlock{
     padding: 10px;
-    border:1px solid blue;
+    /*border:3px solid blue;*/
+}
+.contentPost{
+    border:2px solid red;
+    display: flex;
 }
 .item {
-    color: #1f2a5f;
+    color: #503a17;
     margin-top: 10px;
-    border:1px solid blue;
     display:flex;
-
 }
-.item img{
-    width: 60px;
+.message{
+    margin-left: 10px;
+}
+.postImg img{
+    width: 40px;
     border-radius: 10%;
 }
 .heart{
-
-
-
+margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+.likeCounter{
+    display: flex;
+    font-size: 14px;
 }

@@ -1,32 +1,27 @@
 import React from "react";
 import H from './header.module.css';
 import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
-import store, {StoreReduxType} from "../../Redux/redux-store";
-import {AuthMeThunk} from "../../Redux/auth-reduser";
+import logoImg from './planeLogo.png';
+import {useDispatch} from "react-redux";
+import {LogOutTC} from "../../Redux/auth-reduser";
 
 type HeaderType = {
-
-    auth:number|null,
+    isAuth:boolean,
     login:string|null,
-
 }
 
 export let Header = (props:HeaderType)=>{
-    console.log(props.auth,props.login)
+    let dispatch = useDispatch()
+    let onClickHandler = () =>{
+        dispatch(LogOutTC());
+    }
 
+    return(
+        <header className={H.header}>
 
-       return(
-
-
-
-           <header className={H.header}>
-
-        <img className={H.img}
-             src={'https://banner2.cleanpng.com/20180406/tie/kisspng-airplane-aircraft-maintenance-flight-transport-aeroplane-5ac7b14f05e3e0.1254718215230364950241.jpg'}/>
-
-               {props.auth == 0? props.login : <div className={H.loginForm}><NavLink to={'/login'}>Login</NavLink></div>}
-               {/*<div className={H.loginForm}><NavLink to={'/login'}>Login</NavLink></div>*/}
+<div> <img src= 'https://banner2.cleanpng.com/20180406/tie/kisspng-airplane-aircraft-maintenance-flight-transport-aeroplane-5ac7b14f05e3e0.1254718215230364950241.jpg'/></div>
+            {props.isAuth? <div className={H.loginName}>{props.login}</div>:<div className={H.loginForm}><NavLink to={'/login'}>Login</NavLink></div>}
+            {props.isAuth?<div><button onClick={onClickHandler}>Log Out</button></div>:null}
     </header>
        )
 }

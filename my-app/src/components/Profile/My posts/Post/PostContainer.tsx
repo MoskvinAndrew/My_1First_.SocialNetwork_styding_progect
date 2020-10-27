@@ -1,10 +1,6 @@
 import React from "react";
 import C from "../MyPosts.module.css";
-import {
-    addNewPostActionCreator,
-    newTextAreaValueActionCreator,
-    onLikeActionCreator
-} from "../../../../Redux/profile-reduser";
+
 import Post from "./Post";
 import {RootState} from "../../../../Redux/redux-store";
 import {connect} from "react-redux";

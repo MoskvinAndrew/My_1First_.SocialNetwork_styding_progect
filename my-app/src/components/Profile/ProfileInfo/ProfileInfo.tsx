@@ -1,25 +1,28 @@
 import React from "react";
 import K from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/preloader";
+import {userProfileType} from "../../../Redux/Store";
+import UserProfileStatus from "./UserProfileStatus";
 
 type ProfileInfoType = {
-    userProfile:any
+    userProfile:userProfileType|null
+    status:string
 }
 let ProfileInfo = React.memo((props:ProfileInfoType)=> {
+
     if(!props.userProfile){
         return <Preloader/>
     }
 
     return(
-        <div>
-        <div>
-        <img className={K.firstImg} src='https://www.eurocae.net/media/1054/header-2-homepage.png'/>
-    </div>
-    <div className={K.descriptionBlock}>
-        <img src={props.userProfile.photos.large&&props.userProfile.photos.large}/>
-        {/*ava+description*/}<div>{props.userProfile.fullName}</div>
-        <p>{props.userProfile.aboutMe}</p>
+        <div className={K.mainWrapper}>
 
+        <div>{<UserProfileStatus/>}</div>
+
+    <div className={K.descriptionBlock}>
+        <div className={K.imgDiv}><img src={props.userProfile.photos.large&&props.userProfile.photos.large}/></div>
+        <div>{props.userProfile.fullName}</div>
+        <div><p>{props.userProfile.aboutMe}</p></div>
     </div>
         </div>
     )})

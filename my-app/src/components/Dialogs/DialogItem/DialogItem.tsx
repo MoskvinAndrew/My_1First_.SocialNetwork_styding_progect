@@ -1,6 +1,7 @@
 import S from "../dialogs.module.css";
 import {HashRouter, Switch, Route, NavLink} from "react-router-dom";
 import React from "react";
+import ChatContainer from "./Chat/ChatContainer";
 
 
 type DialogItemType = {
@@ -13,6 +14,7 @@ type DialogItemType = {
 
 
 function DialogItem(props: DialogItemType) {
+
     return (
 
         <div className={S.dialog}>
@@ -21,6 +23,8 @@ function DialogItem(props: DialogItemType) {
             <img className={S.avatar} src={props.ava} />
 
         </div>)
+
+
 
 
 }

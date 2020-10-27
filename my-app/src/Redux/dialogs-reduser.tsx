@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {dialogsPageType} from "./Store";
 
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
+
 const SEND_MESSAGE = "SEND_MESSAGE";
 
 let initialState = {
@@ -18,31 +18,20 @@ let initialState = {
         {id:v1(), text: 'Petya'},
         {id:v1(), text: 'Goodbye'}
     ],
-    newMessageBody: "",
+
 }
 
 const dialogsReducer=(state:dialogsPageType = initialState,action:any)=> {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-         return {...state,newMessageBody:action.body}     //сразу выводим в returnE для того чтобы не создавать переменную
+
         case SEND_MESSAGE:
-            let copyState = {...state};    //создаем переменную и копируем стейт в нее и добавляем новый элемент в массив
-                                           // (другой способ)
-            copyState.messagesData = [...state.messagesData,{id: v1(), text: copyState.newMessageBody}];
-            copyState.newMessageBody = "";
+            let copyState = {...state};
+            copyState.messagesData = [...state.messagesData,{id: v1(), text: action.newMessage}];
+
             return copyState;
         default:return state;
     }
-
-
-
 }
-type UpdateNewMessageBodyCreatorType = {
-    type: typeof  UPDATE_NEW_MESSAGE_BODY
-    body: string
-}
-
-export const updateNewMessageBodyCreator =(body:string): UpdateNewMessageBodyCreatorType=>({type:UPDATE_NEW_MESSAGE_BODY,body:body});
-export const sendMessageCreator =()=>({type:SEND_MESSAGE});
+export const sendMessageCreator =(newMessage:string)=>({type:SEND_MESSAGE,newMessage});
 
 export default dialogsReducer;

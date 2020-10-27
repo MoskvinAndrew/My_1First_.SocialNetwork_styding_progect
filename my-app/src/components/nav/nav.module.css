@@ -1,11 +1,18 @@
 .nav{
-    grid-area: n;
+    /*position: fixed;*/
+    /*border: 3px solid #020101;*/
+    display: flex;
+    flex-direction: column;
     background-color: blueviolet;
-    padding: 20px;
+    width: 200px;
+    align-items: flex-end;
+
 }
 .item a {
     color: #e7dddd;
     text-decoration: none;
+    font-size: 30px;
+    margin-right: 10px;
 }
 .item a.active {
     color: goldenrod;

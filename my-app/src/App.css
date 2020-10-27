@@ -1,26 +1,23 @@
-.app-wrapper{
-  width: 1500px;
 
-  display: grid;
+.mainWrapper{
+/*border:5px solid green;*/
+display: flex;
+flex-direction: column;
+}
+.navContent{
+display: flex;
+}
+.mainContent{
+    width: 100%;
+    justify-content: stretch;
+    background-color: coral;
+}
+.navAndMain{
+display: flex;
 
-  grid-template-areas:
-   'h h'
-    'n c';
 
-
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
 
 
 }
-.app-wrapper-content{
-  grid-area: c;
-  background-color: coral;
-
-}
-
-
-
-
 
 

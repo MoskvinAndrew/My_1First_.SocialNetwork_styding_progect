@@ -1,64 +1,27 @@
 import React from "react";
-import C from "./MyPosts.module.css";
 import {
     addNewPostActionCreator,
-    newTextAreaValueActionCreator,
     onLikeActionCreator
 } from "../../../Redux/profile-reduser";
 import {RootState, StoreReduxType} from "../../../Redux/redux-store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
-type MypostsType = {};
 
-
-// function MyPostsContainer (props: MypostsType) {
-//
-//
-//  let newPost = props.store.getState().profileReducer.newPostText
-//
-//     let onAddNewPost = ()=>{
-//         props.dispatch(addNewPostActionCreator());
-//     }
-//
-//     let onNewTextAreaValue =(textNew:string)=>{
-//         props.dispatch(newTextAreaValueActionCreator(textNew));
-//     }
-//
-//
-//     return (
-//
-//         <div className={C.postBlock}>
-//            <MyPosts
-//                     postsData={props.store.getState().profileReducer.postsData}
-//                     dispatch={props.dispatch}
-//                     onAddNewPost={onAddNewPost}
-//                     onNewTextAreaValue={onNewTextAreaValue}
-//                     newPost={newPost}
-//                     store={props.store}
-//            />
-//
-//
-//         </div>
-//     )
-//
-// };
 
 const mapStateToProps = (state: RootState) => {
     return {
-        newPost: state.profilePage.newPostText,
         postsData: state.profilePage.postsData,
-
     }
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onNewTextAreaValue: (textNew: string) => {
-            dispatch(newTextAreaValueActionCreator(textNew))
-        },
+        // onNewTextAreaValue: (textNew: string) => {
+        //     dispatch(newTextAreaValueActionCreator(textNew))
+        // },
 
-        onAddNewPost: () => {
-            dispatch(addNewPostActionCreator());
+        onAddNewPost: (textNew: string) => {
+            dispatch(addNewPostActionCreator(textNew));
         },
         onOnLikeActionCreator: (id: string) => {
             dispatch(onLikeActionCreator(id))

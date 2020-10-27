@@ -1,53 +1,66 @@
 import React from "react";
 import P from "./Profile.module.css";
 import Profile from "./Profile";
-import  axios from "axios";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {setUserProfile} from "../../Redux/profile-reduser";
-import { withRouter } from "react-router-dom";
-import {usersAPI} from "../../api/api";
+import {getUserStatusTC, setCurrentUserStatus, setUserProfile} from "../../Redux/profile-reduser";
+import {withRouter, Redirect} from "react-router-dom";
+import {ProfileAPI, usersAPI} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/AuthRedirect";
+import {compose} from "redux";
+import {userProfileType} from "../../Redux/Store";
+import {resivedUserId, statusd, userProfile} from "../../Redux/profile-selectors";
 
 
-type ProfileContainerType={
-    setUserProfile:(userProfile:any)=>void,
-    userProfile:any
-    match:any
+type ProfileContainerType = {
+    setUserProfile: (userProfile: any) => void,
+    userProfile: userProfileType | null
+    match: any
+    status:string
+    setCurrentUserStatus:(userStatus:string)=>void
+    getUserStatusTC:(userId:number)=>void
+    resivedUserId:number
+
 
 }
 
-class ProfileContainer extends React.Component<ProfileContainerType>{
 
+class ProfileContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
-
         let userId = this.props.match.params.userId;
-
         if(!userId){
-            userId=2;
+            userId=this.props.resivedUserId;
         }
-        console.log(userId)
-
-        usersAPI.UsersProfileSet(userId)
+        usersAPI.UserProfileSet(userId)
             .then((data: any) => {
                 this.props.setUserProfile(data);
+            });
+         this.props.getUserStatusTC(userId)
 
-                })
-    }
+    };
 
-    render(){
 
-        return(
-        <div className={P.content}>
-            <Profile userProfile={this.props.userProfile}
-               />
-        </div>
+    render() {
 
-        )
-    }
-}
-let mapStateToProps = (state:RootState) =>({
-    userProfile:state.profilePage.userProfile,
+        return (
+            <div className={P.content}>
+                <Profile {...this.props} userProfile={this.props.userProfile} status={this.props.status}
+                />
+            </div>
+        )}}
+
+let mapStateToProps = (state: RootState) => ({
+
+    userProfile: userProfile(state),
+    status: statusd(state),
+    resivedUserId:resivedUserId(state)
+
+
 })
 
-// let ComponentWitchReadURL = withRouter(ProfileContainer);
-export default withRouter(connect(mapStateToProps, {setUserProfile})(ProfileContainer)) ;
+export default compose(connect(mapStateToProps, {setUserProfile,setCurrentUserStatus,getUserStatusTC})
+                                                                  , withAuthRedirect
+                                                                  , withRouter
+
+)
+(ProfileContainer) as React.ComponentType
