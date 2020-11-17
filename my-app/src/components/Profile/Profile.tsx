@@ -14,12 +14,12 @@ type ProfileType = {
 
 function Profile(props:ProfileType) {
     return (
-
         <div style={{width: '100%'}}>
             <ProfileInfo userProfile={props.userProfile} status={props.status}/>
             <MyPostsContainer/>
 
         </div>
+
     )
 };
 export default Profile;

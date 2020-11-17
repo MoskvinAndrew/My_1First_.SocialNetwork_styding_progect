@@ -1,9 +1,13 @@
  import React from 'react';
 import {RootState} from "./redux-store";
+ import {createSelector} from "reselect";
 
 export const getUsersPage = (state:RootState) => {
     return state.UsersPage.users
 };
+
+export const getSuperUserPage = createSelector([getUsersPage],(users)=>users.length)
+
 export const getPageSize = (state:RootState) => {
     return state.UsersPage.pageSize
 };

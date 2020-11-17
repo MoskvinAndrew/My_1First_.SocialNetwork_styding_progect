@@ -33,10 +33,12 @@ const appReducer = (state: AppDataType = initialState, action: ActionsType) => {
     }
 }
 export const InitializedSuccess = () =>({type:'INITIALIZED_SUCCESS'});
-export const initializeApp = () =>
+
+export const initializeAppTC = () =>
     (dispatch:Dispatch)=> {
 
-    // @ts-ignore
+
+        // @ts-ignore
         let promiseAuthMe = dispatch(AuthMeThunk());
        Promise.all([promiseAuthMe]).then(()=>{
            dispatch(InitializedSuccess())

@@ -9,14 +9,16 @@ type newPostOwnProps = {
 }
 
 export type newPostValuesType = {
-
+    newPostText:string
 }
 
 const maxLength20 = maxLengthCreator(20)
 
 let NewPostForm: React.FC<InjectedFormProps<newPostValuesType, newPostOwnProps> & newPostOwnProps>
     = ({handleSubmit, error}) => {
+
     return (
+
         <form onSubmit={handleSubmit}>
 
                 <Field   name={"newPostText"}

@@ -1,21 +1,26 @@
 
-.mainWrapper{
-/*border:5px solid green;*/
-display: flex;
-flex-direction: column;
+.mainWrapper {
+    /*border:5px solid green;*/
+    display: flex;
+    flex-direction: column;
+    background-color: #b1b3b5;
 }
-.navContent{
-display: flex;
+
+.navContent {
+    display: flex;
 }
-.mainContent{
+
+.mainContent {
     width: 100%;
     justify-content: stretch;
-    background-color: coral;
+    background-color: #e1e4e7;
 }
-.navAndMain{
-display: flex;
 
-
+.navAndMain {
+    display: flex;
+    margin-top: 5px;
+    width: 85%;
+    align-self: center;
 
 
 }

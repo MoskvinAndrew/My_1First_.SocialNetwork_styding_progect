@@ -11,8 +11,6 @@ import {requiredField} from "../../../utils/validators/validators";
 export type MypostsType = {
     postsData: Array<postsDataType>,
     onAddNewPost:(textNew:string)=>void,
-    onNewTextAreaValue:(textNew:string)=>void,
-    newPost:string,
     onOnLikeActionCreator:(id:string)=>void
 
 };
@@ -20,10 +18,13 @@ export type MypostsType = {
 
 
 
-function MyPosts(props: MypostsType) {
-    let newPostData = props.postsData.map(p => <PostContainer key={p.id} message={p.message}  likes={p.likes}  id={p.id} onOnLikeActionCreator={props.onOnLikeActionCreator}  />)
+let MyPosts = (props: MypostsType) => {
 
-    let addNewPost = (values:any)=>{
+    let newPostData = props.postsData.
+
+    map(p => <PostContainer key={p.id} message={p.message}  likes={p.likes}  id={p.id} onOnLikeActionCreator={props.onOnLikeActionCreator}  />)
+
+    let addNewPost = (values:{newPostText:string})=>{
         props.onAddNewPost(values.newPostText);
     };
 
@@ -33,7 +34,7 @@ function MyPosts(props: MypostsType) {
         <div className={C.postBlock}>
             <h3>My posts</h3>
             <div>
-                <NewPostTextForm onSubmit={addNewPost}/>
+                <NewPostTextForm onSubmit={addNewPost} />
             </div>
             {newPostData}
 

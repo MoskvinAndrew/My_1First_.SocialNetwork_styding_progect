@@ -13,18 +13,22 @@ import Login from "./components/Login/login";
 import {AuthMeThunk} from "./Redux/auth-reduser";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {initializeApp} from "./Redux/app-reduser";
+import {initializeAppTC} from "./Redux/app-reduser";
 import {RootState} from "./Redux/redux-store";
 import {Preloader} from "./components/common/Preloader/preloader";
+import {getUserStatusTC} from "./Redux/profile-reduser";
 
 type AppPropsType = {
-    initializeApp:()=>void,
-    isInitialized:boolean
+    initializeAppTC:()=>void,
+    isInitialized:boolean,
+
+
 }
 
 class App extends  React.Component<AppPropsType>{
     componentDidMount() {
-        this.props.initializeApp();
+        this.props.initializeAppTC();
+
     }
     render() {
         if(!this.props.isInitialized){
@@ -57,11 +61,12 @@ class App extends  React.Component<AppPropsType>{
 }
 let mapStateToProps = (state:RootState) =>{
     return (
-        {isInitialized:state.app.initialized
+        {isInitialized:state.app.initialized,
+
         })
 }
 
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {initializeApp}))(App)as React.ComponentType;
+    connect(mapStateToProps, {initializeAppTC}))(App)as React.ComponentType;

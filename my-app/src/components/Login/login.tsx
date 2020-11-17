@@ -3,18 +3,24 @@ import {Field, InjectedFormProps, reduxForm, reset} from "redux-form";
 import {Input} from "../common/formsControls/formsControls";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 import {Dispatch} from "redux";
-import {connect, useSelector} from "react-redux";
-import {LoginTC} from "../../Redux/auth-reduser";
+import {connect} from "react-redux";
 import { Redirect } from 'react-router-dom';
 import {RootState} from "../../Redux/redux-store";
 import formStyle from "./../common/formsControls/formsControls.module.css"
+import {LoginTC} from "../../Redux/auth-reduser";
+
+type LoginType = {
+    isAuth:boolean|null,
+    LoginTC:(email:string,password:string,rememberMe:boolean)=>void;
+}
+
 
 type LoginFormOwnProps = {
     captchaUrl?: string | null
 }
 
 export type LoginFormValuesType = {
-    captcha: string
+    // captcha: string
     rememberMe: boolean
     password: string
     email: string
@@ -50,19 +56,21 @@ let LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps
 
 }
 
-const afterSubmit = (result:any,dispatch:Dispatch) =>
+const afterSubmit = (result:any,dispatch:Dispatch) => {                                                                     //Очистка формы после сабмита
     dispatch(reset('login'));
+}
+const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>                                                   //оборачиваем в HOC redux form для получения необходимых данных
+                                                                                                                            //  в род.компоненте
+({form: 'login',onSubmitSuccess: afterSubmit})(LoginForm)
 
-const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({form: 'login',onSubmitSuccess: afterSubmit})(LoginForm)
 
 
-
-const Login = (props:any) => {
-    if(props.isAuth === true){
+const Login = (props:LoginType) => {
+    if(props.isAuth){
         return <Redirect to={"/Profile"} />
     };
 
-    const onSubmit = (formData: any) => {
+    const onSubmit = (formData: LoginFormValuesType) => {
         props.LoginTC(formData.email,formData.password,formData.rememberMe)
     };
 

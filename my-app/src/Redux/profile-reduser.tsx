@@ -57,9 +57,6 @@ const profileReducer = (state: profilePageType = initialState, action: ActionsTy
 
     switch (action.type) {
 
-        // case UPDATE_NEW_POST_TEXT:
-        //     return {...state, newPostText: action.textNew};
-
 
         case ADD_POST:
             return {...state, postsData: [ {id: v1(), message: action.textNew, likes: 0},...state.postsData]}
@@ -87,7 +84,6 @@ const profileReducer = (state: profilePageType = initialState, action: ActionsTy
 }
 
 export const addNewPostActionCreator = (textNew: string):addNewPostActionCreatorType => ({type: "ADD_POST",textNew});
-// export const newTextAreaValueActionCreator = (textNew: string):newTextAreaValueActionCreatorType => ({type: "UPDATE_NEW_POST_TEXT",textNew});
 export const onLikeActionCreator = (id: string):onLikeActionCreatorType => ({type: "ADD_LIKE", id});
 export const setUserProfile = (userProfile:userProfileType):setUserProfileType =>({type:"SET_USER_PROFILE",userProfile});
 export const setCurrentUserStatus = (userStatus:string):setCurrentUserStatusType =>({type:'SET_USER_STATUS',userStatus});

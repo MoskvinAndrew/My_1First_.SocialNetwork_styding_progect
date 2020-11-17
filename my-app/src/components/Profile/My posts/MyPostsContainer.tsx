@@ -6,6 +6,7 @@ import {
 import {RootState, StoreReduxType} from "../../../Redux/redux-store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
+import {Dispatch} from "redux";
 
 
 
@@ -14,12 +15,8 @@ const mapStateToProps = (state: RootState) => {
         postsData: state.profilePage.postsData,
     }
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        // onNewTextAreaValue: (textNew: string) => {
-        //     dispatch(newTextAreaValueActionCreator(textNew))
-        // },
-
         onAddNewPost: (textNew: string) => {
             dispatch(addNewPostActionCreator(textNew));
         },
@@ -28,5 +25,6 @@ const mapDispatchToProps = (dispatch: any) => {
         }
     }
 }
-const MyPostsContainer: any = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 export default MyPostsContainer;

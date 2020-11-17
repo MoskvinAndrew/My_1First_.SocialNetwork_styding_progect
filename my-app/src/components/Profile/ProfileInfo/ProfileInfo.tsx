@@ -13,7 +13,6 @@ let ProfileInfo = React.memo((props:ProfileInfoType)=> {
     if(!props.userProfile){
         return <Preloader/>
     }
-
     return(
         <div className={K.mainWrapper}>
 
@@ -24,6 +23,7 @@ let ProfileInfo = React.memo((props:ProfileInfoType)=> {
         <div>{props.userProfile.fullName}</div>
         <div><p>{props.userProfile.aboutMe}</p></div>
     </div>
+
         </div>
     )})
 export default ProfileInfo;

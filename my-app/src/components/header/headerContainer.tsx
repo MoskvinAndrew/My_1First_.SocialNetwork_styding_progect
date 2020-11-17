@@ -6,12 +6,13 @@ import {AuthMeThunk, LogOutTC, setAuthUserData} from "../../Redux/auth-reduser";
 import {Header} from "./header";
 
 export type HeaderContainerPropsType = {
-
+    isAuth:boolean|null,
+    login:string|null,
 }
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     render() {
-        // @ts-ignore
+
         return <Header {...this.props}/>
     }
 }
