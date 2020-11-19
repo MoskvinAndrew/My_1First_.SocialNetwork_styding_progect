@@ -13,7 +13,7 @@
 .mainContent {
     width: 100%;
     justify-content: stretch;
-    background-color: #e1e4e7;
+    border:1px solid red;
 }
 
 .navAndMain {

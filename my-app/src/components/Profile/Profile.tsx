@@ -14,10 +14,13 @@ type ProfileType = {
 
 function Profile(props:ProfileType) {
     return (
-        <div style={{width: '100%'}}>
+        <div>
+            <div className={P.wrapper}>
             <ProfileInfo userProfile={props.userProfile} status={props.status}/>
-            <MyPostsContainer/>
-
+            </div>
+            <div className={P.wrapperPosts}>
+                <MyPostsContainer/>
+            </div>
         </div>
 
     )

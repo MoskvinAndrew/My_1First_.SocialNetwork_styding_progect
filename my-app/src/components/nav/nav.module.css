@@ -21,11 +21,15 @@
     font-size: 25px;
     margin-right: 10px;
     font-weight: lighter;
+    opacity: 0.5;
 
 }
 
 .item a.active {
     color: goldenrod;
+}
+.item a:hover {
+    opacity: 1.0;
 }
 
 .nav .item {

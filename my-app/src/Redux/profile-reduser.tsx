@@ -90,23 +90,21 @@ export const setCurrentUserStatus = (userStatus:string):setCurrentUserStatusType
 
 
 export const putUserStatusTC = ( userCurrentStatus:string) => {
-    return(dispatch:Dispatch)=>{
-        ProfileAPI.statusPut(userCurrentStatus)
-            .then((response:any) => {
-            })
-            .catch(error =>{
+    return async (dispatch:Dispatch)=>{
+      let response = await ProfileAPI.statusPut(userCurrentStatus)
+          .catch(error =>{
                 console.error(error.message)
             })
     }};
 export const getUserStatusTC = (userId:number) => {
-    return(dispatch:Dispatch)=>{
-        ProfileAPI.statusGet(userId)
-            .then((response:any) => {
+    return async (dispatch:Dispatch)=>{
+      let response = await ProfileAPI.statusGet(userId)
+
                 dispatch(setCurrentUserStatus(response.data));
-            })
-            .catch(error =>{
-                console.error(error.message)
-            })
+
+            // .catch(error =>{
+            //     console.error(error.message)
+            // })
     }};
 
 

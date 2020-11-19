@@ -3,6 +3,7 @@ import K from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/preloader";
 import {userProfileType} from "../../../Redux/Store";
 import UserProfileStatus from "./UserProfileStatus";
+import backGround from"../../../assets/light-aircraft-pilot-course-spain.jpg"
 
 type ProfileInfoType = {
     userProfile:userProfileType|null

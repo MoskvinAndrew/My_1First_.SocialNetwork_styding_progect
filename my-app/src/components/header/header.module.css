@@ -32,6 +32,7 @@
 .logoNameSpan h1{
     height:10px;
     cursor: pointer;
+    font-family: Orbitron;
 }
 .header .logoText{
     font-size: 10px;

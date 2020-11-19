@@ -18,13 +18,13 @@ export const usersAPI = {
     Unfollow(id: number) {
         return instanse.delete(`follow/${id}`)
             .then(response => {
-                return response.data
+                return response
             })
     },
     Follow(id: number) {
         return instanse.post(`follow/${id}`)
             .then(response => {
-                return response.data
+                return response
             })
     },
     UserProfileSet(userId: number) {

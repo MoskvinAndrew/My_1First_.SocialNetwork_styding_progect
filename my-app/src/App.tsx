@@ -17,6 +17,8 @@ import {initializeAppTC} from "./Redux/app-reduser";
 import {RootState} from "./Redux/redux-store";
 import {Preloader} from "./components/common/Preloader/preloader";
 import {getUserStatusTC} from "./Redux/profile-reduser";
+import P from "./components/Profile/Profile.module.css";
+import MyPostsContainer from "./components/Profile/My posts/MyPostsContainer";
 
 type AppPropsType = {
     initializeAppTC:()=>void,
@@ -43,8 +45,10 @@ class App extends  React.Component<AppPropsType>{
                 <div className='navAndMain'>
                     <div className='navContent'><Nav/></div>
                     <div className='mainContent'>
-                        <Route path='/Dialogs' render={() => <DialogsContainer/>}/>
                         <Route path='/Profile/:userId?' render={() => <ProfileContainer/>}/>
+
+
+                        <Route path='/Dialogs' render={() => <DialogsContainer/>}/>
                         <Route path='/News' render={() => <News/>}/>
                         <Route path='/Music' render={() => <Music/>}/>
                         <Route exact path='/users' render={() => <UsersContainer/>}/>

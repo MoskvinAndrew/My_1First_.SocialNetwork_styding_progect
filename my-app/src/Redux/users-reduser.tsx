@@ -1,5 +1,7 @@
 import {usersPageType} from "./Store";
 import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
+import {updateObjectInArray} from "../utils/objects-helper";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -79,12 +81,13 @@ const usersReducer = (state: usersPageType = initialState, action: ActionsType) 
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userID) {
-                        return {...u, followed: false}
-                    }
-                    return u
-                })
+                users: updateObjectInArray(state.users,action.userID,'id',{followed: false})
+                // users: state.users.map(u => {
+                //     if (u.id === action.userID) {
+                //         return {...u, followed: false}           //рефакторинг из видео 90
+                //     }
+                //     return u
+                // })
             };
 
 
@@ -158,23 +161,45 @@ export const getUsers = (currentPage: number, pageSize: number) => {
                 dispatch(setUsersAC(data.items));
                 dispatch(setIsFetchingAC(false));
                 dispatch(totalUsersCountAC(data.totalCount));
-            })}}
+            })}};
+
+let followUnfollowFlow = async (userId:number,dispatch:Dispatch,apiMethod:any,actionCreator:any) =>{
+    dispatch(setTogleFollowingProgres(true,userId));
+    let response = await apiMethod (userId);
+    if (response.data.resultCode === 0) {
+        dispatch(actionCreator(userId));
+    }
+        dispatch(setTogleFollowingProgres(false,userId));
+    }
+
+
+
 export const UnFollow = (userId:number) => {
-    return(dispatch:any)=>{
-       dispatch(setTogleFollowingProgres(true,userId));
-       usersAPI.Unfollow(userId).then((data: any) => {
-           if (data.resultCode === 0) {
-                dispatch(unfollowAC(userId));
-                dispatch(setTogleFollowingProgres(false,userId));
-            }})}}
+    return async (dispatch:any)=>{
+        let apiMethod = usersAPI.Unfollow.bind(userId);
+        let actionCreator = unfollowAC;
+         followUnfollowFlow(userId,dispatch,apiMethod,actionCreator);
+    //    dispatch(setTogleFollowingProgres(true,userId));
+    // let response = await apiMethod(userId);
+    // if (response.data.resultCode === 0) {                               //рефакторинг из видео 90
+    //     dispatch(actionCreator);
+    // }
+    //             dispatch(setTogleFollowingProgres(false,userId));
+            }
+}
 export const Follow = (userId:number) => {
-    return(dispatch:any)=>{
-        dispatch(setTogleFollowingProgres(true,userId));
-        usersAPI.Follow(userId).then((data: any) => {
-            if (data.resultCode === 0) {
-                dispatch(followAC(userId));
-                dispatch(setTogleFollowingProgres(false,userId));
-            }})}}
+    return async (dispatch:any)=> {
+        let apiMethod = usersAPI.Follow.bind(userId);
+        let actionCreator = followAC;
+        followUnfollowFlow(userId, dispatch, apiMethod, actionCreator);
+        //     dispatch(setTogleFollowingProgres(true,userId));
+        //     let response = await apiMethod(userId);
+        //   if (response.data.resultCode === 0) {                          //рефакторинг из видео 90
+        //             dispatch(actionCreator);
+        //   }
+        //             dispatch(setTogleFollowingProgres(false,userId));
+        }
+    };
 
 
 
