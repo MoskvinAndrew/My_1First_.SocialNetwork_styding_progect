@@ -12,7 +12,8 @@ export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instanse.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
-                return response.data
+                return response.data;
+
             });
     },
     Unfollow(id: number) {

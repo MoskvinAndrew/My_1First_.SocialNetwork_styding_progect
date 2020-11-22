@@ -5,6 +5,7 @@ import {UsersFunctional} from "./Users";
 import {Preloader} from "../common/Preloader/preloader";
 import {usersAPI} from "../../api/api";
 import {UnFollow} from "../../Redux/users-reduser";
+import {Paginator} from "../common/Paginator/Paginator";
 
 
 
@@ -41,19 +42,22 @@ class UsersApiContain extends React.Component<MyPropsType> {
     render() {
 
         return <>
-            {this.props.isFetching? <Preloader/>:null}
-            <UsersFunctional
-            onClickHandler={this.onClickHandler}
-            currentPage={this.props.currentPage}
-            users={this.props.users}
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            disableButtons={this.props.disableButtons}
-            UnFollow={this.props.UnFollow}
-            Follow={this.props.Follow}
+            <Paginator currentPage={this.props.currentPage}
+                       totalItemsCount={this.props.totalUsersCount}
+                       onClickHandler={this.onClickHandler}
+                       pageSize={this.props.pageSize}
+                       portionSize={10} />
+            {this.props.isFetching? <Preloader/>:<UsersFunctional
+                users={this.props.users}
+                totalUsersCount={this.props.totalUsersCount}
+                disableButtons={this.props.disableButtons}
+                UnFollow={this.props.UnFollow}
+                Follow={this.props.Follow}
 
 
-        />
+            />}
+
+
         </>
 
     }

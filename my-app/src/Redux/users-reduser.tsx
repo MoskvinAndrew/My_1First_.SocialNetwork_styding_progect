@@ -58,7 +58,7 @@ type ActionsType =
 let initialState = {
     users: [],
     pageSize: 10,
-    totalUsersCount: 80,
+    totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
     disableButtons: [],
@@ -154,10 +154,11 @@ export const setTogleFollowingProgres = (isFetching: boolean, id: number): setTo
     id
 })
 
-export const getUsers = (currentPage: number, pageSize: number) => {
-    return (dispatch: any) => {
+export const getUsers = (currentPage: number, pageSize: number) =>  {
+    return  (dispatch: any) =>   {
         dispatch(setIsFetchingAC(true));
-            usersAPI.getUsers(currentPage, pageSize).then((data) => {
+          usersAPI.getUsers(currentPage, pageSize)
+                .then((data) => {
                 dispatch(setUsersAC(data.items));
                 dispatch(setIsFetchingAC(false));
                 dispatch(totalUsersCountAC(data.totalCount));

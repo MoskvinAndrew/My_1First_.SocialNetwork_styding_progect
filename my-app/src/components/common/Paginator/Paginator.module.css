@@ -1,0 +1,43 @@
+.wrapper{
+    /*border:2px solid black;*/
+    display: flex;
+    justify-content: space-around;
+
+
+}
+.contentWrap{
+    /*border:2px solid #802d2d;*/
+    display: flex;
+    justify-content: space-around;
+
+    width: 300px;
+}
+
+span .pageNumber{
+    font-family: "Arial Black";
+    width: 20px;
+    opacity: 30%;
+    cursor: pointer;
+}
+
+span.selectedPage .pageNumber{
+    font-weight: bold ;
+    opacity:1;
+    text-decoration: underline;
+
+}
+span .pageNumber:hover{
+    opacity: 1;
+
+}
+.button {
+    display: flex;
+    border-radius: 10%;
+    /*border:1px solid green;*/
+    width: 45px;
+    cursor: pointer;
+    justify-content: center;
+    font-family: Anton;
+    letter-spacing: 2px;
+
+}
