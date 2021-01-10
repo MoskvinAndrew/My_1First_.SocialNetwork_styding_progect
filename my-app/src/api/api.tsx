@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ProfileDataFormValuesType} from "../components/Profile/ProfileInfo/ProfileEditForm/ProfileForm";
 
 const instanse = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -28,11 +29,6 @@ export const usersAPI = {
                 return response
             })
     },
-    UserProfileSet(userId: number) {
-        console.error('Obsolete method, use Profile API')
-        return ProfileAPI.userIdProfile(userId)
-    }
-
 
 };
 export const AuthAPI = {
@@ -68,6 +64,20 @@ export const ProfileAPI = {
         const promise = instanse.put(`profile/status/`, {status:userCurrentStatus});
         return promise;
     },
+    setAvatar(photoFile:any) {
+        let formData = new FormData();
+        formData.append("image",photoFile)
+
+        const promise = instanse.put( `/profile/photo/`,formData,{headers:{
+            "Content-Type": 'multipart/form-data'
+            }});
+        return promise
+    },
+    updateUserInformation(values:ProfileDataFormValuesType) {
+        const promise = instanse.put(`/profile`,values);
+        return promise
+
+    }
 
 };
 
@@ -81,4 +91,10 @@ export type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
     data: D
+}
+export const securityAPI = {
+    getCaptchaURL(){
+        const promise = instanse.get(`/security/get-captcha-url`);
+        return promise;
+    }
 }

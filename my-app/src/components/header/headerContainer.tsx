@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {AuthMeThunk, LogOutTC, setAuthUserData} from "../../Redux/auth-reduser";
+import {AuthMeThunk, LogOutTC, setAuthUserData} from "../../Redux/auth-reducer";
 import {Header} from "./header";
 
 export type HeaderContainerPropsType = {

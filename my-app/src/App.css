@@ -3,7 +3,7 @@
     /*border:5px solid green;*/
     display: flex;
     flex-direction: column;
-    background-color: #b1b3b5;
+    background-color: #929496;
 }
 
 .navContent {
@@ -13,7 +13,8 @@
 .mainContent {
     width: 100%;
     justify-content: stretch;
-    border:1px solid red;
+    /*border:1px solid red;*/
+    border-radius: 10%;
 }
 
 .navAndMain {
@@ -21,8 +22,6 @@
     margin-top: 5px;
     width: 85%;
     align-self: center;
-
-
 }
 
 

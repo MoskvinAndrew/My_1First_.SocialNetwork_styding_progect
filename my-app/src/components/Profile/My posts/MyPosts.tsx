@@ -3,7 +3,6 @@ import C from "./MyPosts.module.css";
 import  { postsDataType} from "../../../Redux/Store";
 import PostContainer from "./Post/PostContainer";
 import {NewPostTextForm} from "./NewPostForm/NewPostForm";
-import {requiredField} from "../../../utils/validators/validators";
 
 
 

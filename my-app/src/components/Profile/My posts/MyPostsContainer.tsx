@@ -9,12 +9,12 @@ import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
 
-
-const mapStateToProps = (state: RootState) => {
-    return {
-        postsData: state.profilePage.postsData,
-    }
+let mapStateToProps = (state: RootState) => {
+return {
+     postsData: state.profilePage.postsData
 }
+
+};
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         onAddNewPost: (textNew: string) => {
@@ -26,5 +26,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+const MyPostsContainer = connect (mapStateToProps, mapDispatchToProps)(MyPosts)
+
 export default MyPostsContainer;

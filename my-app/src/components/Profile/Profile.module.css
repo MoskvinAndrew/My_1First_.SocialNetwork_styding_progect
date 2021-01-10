@@ -2,12 +2,25 @@
     width:100%;
 
 }
-.content{
-    background-image: url("https://www.grupooneair.com/wp-content/uploads/2018/04/light-aircraft-pilot-course-spain.jpg"); /* The image used */
-    background-color: #cccccc; /* Used if the image is unavailable */
-    height: 400px; /* You must set a specified height */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover;
-    opacity: 20%;
-    }
+.wrapper .ProfileInfo{
+    position: relative;
+    overflow: hidden;
+    padding: 16px;
+    /*border: 1px dashed green;*/
+    height: 400px;
+}
+.ProfileInfo img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.1;
+    border-radius: 5px;
+}
+.ProfileInfo .infoComponent{
+    position: relative;
+    z-index: 2;
+    height: 100%;
+}
+

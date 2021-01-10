@@ -1,0 +1,7 @@
+.photoBlock img{
+    border:1px solid red;
+    position:relative;
+    opacity:1;
+    width:150px;
+
+}

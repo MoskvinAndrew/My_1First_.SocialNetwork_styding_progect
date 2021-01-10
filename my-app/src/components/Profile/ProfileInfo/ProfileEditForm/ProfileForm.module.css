@@ -1,0 +1,41 @@
+form{
+    width: 100%;
+}
+
+form .profileDataContentWrapper{
+    /*border:3px solid #b300ff;*/
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+
+
+ .statusEditButtonChooseFileButton{
+    display: inline-flex;
+    flex-direction: column;
+    /*border:2px solid #0004ff;*/
+    flex-wrap: wrap;
+}
+ .profileUserData{
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /*border:2px solid #26ff00;*/
+
+
+}
+.contactsList{
+    /*border:2px solid #ff0033;*/
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+
+
+}
+
+
+

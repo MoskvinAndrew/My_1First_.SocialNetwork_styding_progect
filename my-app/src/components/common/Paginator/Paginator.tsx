@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import ReactPaginate from 'react-paginate';
+ import ReactPaginate from 'react-paginate';
 import  style from "./Paginator.module.css";
 
 type PaginatorType = {
@@ -10,7 +10,7 @@ type PaginatorType = {
     portionSize:number
 };
 
-export const Paginator = (props:PaginatorType) => {
+export const Paginator = React.memo((props:PaginatorType) => {
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize);
     let pages = [];
     let portionCount = Math.ceil(pagesCount/props.portionSize);
@@ -29,6 +29,7 @@ export const Paginator = (props:PaginatorType) => {
     }
     return (
         <div className={style.wrapper}>
+
             <div className={style.button} onMouseOver={onMouseOverHandler} onMouseLeave={onMouseLeave}>{portionNumber > 1 && arrow && '<=' }{portionNumber > 1 && <span onClick={()=>setPortionNumber(portionNumber - 1)}>prev</span>}</div>
             <div className={style.contentWrap} >
                 {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
@@ -44,4 +45,4 @@ export const Paginator = (props:PaginatorType) => {
 
  )
 
-}
+});

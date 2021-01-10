@@ -10,7 +10,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/header/headerContainer";
 import Login from "./components/Login/login";
-import {AuthMeThunk} from "./Redux/auth-reduser";
+import {AuthMeThunk} from "./Redux/auth-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeAppTC} from "./Redux/app-reduser";
@@ -46,8 +46,6 @@ class App extends  React.Component<AppPropsType>{
                     <div className='navContent'><Nav/></div>
                     <div className='mainContent'>
                         <Route path='/Profile/:userId?' render={() => <ProfileContainer/>}/>
-
-
                         <Route path='/Dialogs' render={() => <DialogsContainer/>}/>
                         <Route path='/News' render={() => <News/>}/>
                         <Route path='/Music' render={() => <Music/>}/>

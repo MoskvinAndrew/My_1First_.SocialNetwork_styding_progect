@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import profileReducer from "./profile-reduser";
-import dialogsReducer from "./dialogs-reduser";
+import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reduser";
 
 
@@ -39,29 +39,29 @@ export type userProfileType = {
 aboutMe: string,
     contacts: {
         facebook: string,
-        website: null,
+        website: string,
         vk: string,
         twitter: string,
         instagram: string,
-        youtube: null,
+        youtube: string,
         github: string,
-        mainLink: null
+        mainLink: string
     },
-    lookingForAJob: true,
+    lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
     userId: number,
     photos: {
         small: string,
         large: string
-    }
+    },
 }
 
 
 export type profilePageType = {
     currentUserStatus:string
     postsData:Array<postsDataType>
-    userProfile:userProfileType|null
+    userProfile:userProfileType
 }
 export type dialogsPageType = {
     messagesData:Array<messagesDataType>

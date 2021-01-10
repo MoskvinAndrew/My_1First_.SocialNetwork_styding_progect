@@ -1,29 +1,43 @@
 .mainWrapper{
+    /*border:3px solid #ff0033;*/
+    display: flex;
+    background-repeat: no-repeat;
+    flex-wrap: wrap;
+
+
+
+}
+.profileDataContentWrapper{
     /*border:3px solid yellow;*/
     display: flex;
-    flex-direction: column;
-    /*background-image: url("https://www.eurocae.net/media/1054/header-2-homepage.png");*/
-    background-repeat: no-repeat;
     width: 100%;
-    
+   justify-content: space-between;
+    flex-wrap: wrap;
 
 }
-
-.descriptionBlock{
-    border:2px solid green;
-    padding: 10px;
+.profileDataContentWrapper .statusEditButtonChooseFileButton{
     display: inline-flex;
     flex-direction: column;
-    align-items: center;
-    margin-right: 20px;
-    font-family: Bahnschrift;
-    font-weight: bold;
+    /*border:2px solid #0004ff;*/
+    flex-wrap: wrap;
+}
+.profileDataContentWrapper .profileUserData{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /*border:2px solid #26ff00;*/
+    max-width: 35%;
 
 }
-/*.descriptionBlock .imgDiv img{*/
-/*    border:2px solid green;*/
-/*    border-radius: 10%;*/
-/*    width: 200px;*/
-/*}*/
+.profileDataContentWrapper .contactsList{
+    /*border:2px solid #ff0033;*/
+    display: flex;
+    flex-direction: column;
+    width: 30%;
 
-/*<img className={K.firstImg} src='https://www.eurocae.net/media/1054/header-2-homepage.png'/>*/
+
+
+}
+
+
+

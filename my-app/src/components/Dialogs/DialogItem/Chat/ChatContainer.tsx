@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {sendMessageCreator} from "../../../../Redux/dialogs-reduser";
+import {sendMessageCreator} from "../../../../Redux/dialogs-reducer";
 import Chat from "./Chat";
 import  {RootState, StoreReduxType} from "../../../../Redux/redux-store";
 import {connect} from "react-redux";

@@ -1,5 +1,6 @@
 import React from "react";
 import formStyle from './formsControls.module.css';
+import Field from "redux-form";
 type TextAreaTypes ={
      input:{
          name: string,
@@ -35,4 +36,6 @@ export const Input = (props:any) =>{
         <FormControl {...props} ><input {...input} {...restProps} /> </FormControl>
 
     )
+
 }
+

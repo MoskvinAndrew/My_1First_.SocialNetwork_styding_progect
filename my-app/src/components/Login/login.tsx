@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import { Redirect } from 'react-router-dom';
 import {RootState} from "../../Redux/redux-store";
 import formStyle from "./../common/formsControls/formsControls.module.css"
-import {LoginTC} from "../../Redux/auth-reduser";
+import {LoginTC} from "../../Redux/auth-reducer";
 
 type LoginType = {
     isAuth:boolean|null,
@@ -33,7 +33,7 @@ let LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <Field name={"email"}
+                <Field  name={"email"}
                        component={Input}
                        placeholder={"Login"}
                 validate={[requiredField,maxLength30]}

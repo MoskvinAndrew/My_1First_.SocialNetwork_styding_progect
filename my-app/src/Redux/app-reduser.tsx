@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {AuthAPI} from "../api/api";
-import {AuthMeThunk} from "./auth-reduser";
+import {AuthMeThunk} from "./auth-reducer";
 
 type AppDataType = {
     initialized:boolean
