@@ -13,10 +13,10 @@ import Login from "./components/Login/login";
 import {AuthMeThunk} from "./Redux/auth-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {initializeAppTC} from "./Redux/app-reduser";
+import {initializeAppTC} from "./Redux/app-reducer";
 import {RootState} from "./Redux/redux-store";
 import {Preloader} from "./components/common/Preloader/preloader";
-import {getUserStatusTC} from "./Redux/profile-reduser";
+import {getUserStatusTC} from "./Redux/profile-reducer";
 import P from "./components/Profile/Profile.module.css";
 import MyPostsContainer from "./components/Profile/My posts/MyPostsContainer";
 
@@ -28,10 +28,19 @@ type AppPropsType = {
 }
 
 class App extends  React.Component<AppPropsType>{
-    componentDidMount() {
-        this.props.initializeAppTC();
+    callAllUnhandledErrors = (promiseRejectionEvent:any) => {
+          alert('someError');                                    // вместо алерта вставим санку для диспатча ошибки в аппРеддюсер
 
     }
+    componentDidMount() {
+        this.props.initializeAppTC();
+        window.addEventListener("somerejection",this.callAllUnhandledErrors);
+
+    };
+    componentWillUnmount() {
+        window.removeEventListener("somerejection",this.callAllUnhandledErrors);
+    }
+
     render() {
         if(!this.props.isInitialized){
          return <Preloader/>}

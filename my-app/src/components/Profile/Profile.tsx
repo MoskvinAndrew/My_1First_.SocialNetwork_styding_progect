@@ -2,8 +2,8 @@ import React from "react";
 import P from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./My posts/MyPostsContainer";
-import {userProfileType} from "../../Redux/Store";
 import backGround from"../../assets/light-aircraft-pilot-course-spain.jpg"
+import {userProfileType} from "../../types/typesOfReducersState";
 
 
 type ProfileType = {

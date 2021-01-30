@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ProfileDataFormValuesType} from "../components/Profile/ProfileInfo/ProfileEditForm/ProfileForm";
+import {loginPOSTResponseType, MeResponseType} from "../types/typesForAuthAxiosResponse";
 
 const instanse = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -14,6 +15,7 @@ export const usersAPI = {
         return instanse.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;
+
 
             });
     },
@@ -33,20 +35,21 @@ export const usersAPI = {
 };
 export const AuthAPI = {
     me() {
-        return instanse.get(`auth/me`)
+        return instanse.get<MeResponseType>(`auth/me`)
             .then(response => {
                 return response.data;
-
+            })},
+    login(email:string,password:string,rememberMe:boolean,captcha:string|null = null ) {
+        return instanse.post<loginPOSTResponseType>(`auth/login`,{email,password,rememberMe,captcha})
+            .then(response => {
+                return response;
             })
     },
-    login(email:string,password:string,rememberMe:boolean) {
-        const promise = instanse.post<ResponseType>(`auth/login`,{email,password,rememberMe})
-        return promise
-    },
     logOut( ) {
-  const promise = instanse.delete<ResponseType>(`auth/login`)
-        return promise
-    }
+  return instanse.delete(`auth/login`)
+        .then(response => {
+                return response;
+            })}
 };
 export const ProfileAPI = {
 
@@ -61,6 +64,7 @@ export const ProfileAPI = {
           return promise;
       },
     statusPut(userCurrentStatus:string) {
+        console.log("statusPutOn")
         const promise = instanse.put(`profile/status/`, {status:userCurrentStatus});
         return promise;
     },
@@ -81,20 +85,12 @@ export const ProfileAPI = {
 
 };
 
-export type loginParamsType = {
-    email:string,
-    password:string,
-    rememberMe:boolean,
-    captcha?:boolean
-}
-export type ResponseType<D = {}> = {
-    resultCode: number
-    messages: Array<string>
-    data: D
-}
 export const securityAPI = {
     getCaptchaURL(){
         const promise = instanse.get(`/security/get-captcha-url`);
         return promise;
     }
 }
+
+
+

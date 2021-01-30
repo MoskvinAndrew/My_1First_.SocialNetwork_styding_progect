@@ -1,16 +1,13 @@
 import React from "react";
-import P from "./Profile.module.css";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {getUserStatusTC, saveAvatarTC, setCurrentUserStatus, setUserProfile, getUserProfileTC} from "../../Redux/profile-reduser";
+import {getUserStatusTC, saveAvatarTC, setCurrentUserStatus, setUserProfile, getUserProfileTC} from "../../Redux/profile-reducer";
 import {withRouter} from "react-router-dom";
-import {ProfileAPI, usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
 import {compose} from "redux";
-import {userProfileType} from "../../Redux/Store";
 import {recivedUserId, status, userProfile} from "../../Redux/profile-selectors";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {userProfileType} from "../../types/typesOfReducersState";
 
 
 type ProfileContainerType = {
@@ -43,14 +40,9 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
          this.props.getUserProfileTC(userId);
         this.props.getUserStatusTC(userId);
 
-        // ProfileAPI.userIdProfile(userId)
-        //     .then((data: any) => {
-        //         this.props.setUserProfile(data);
-        //     });
     }
 
     componentDidMount() {
-
         this.refreshProfile()
     };
 

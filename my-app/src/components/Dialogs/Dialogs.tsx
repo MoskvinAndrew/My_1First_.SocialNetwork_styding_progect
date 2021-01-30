@@ -1,8 +1,8 @@
 import React from 'react';
 import S from './dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
-import { dialogsDataType,messagesDataType} from "../../Redux/Store";
 import { Redirect } from 'react-router-dom';
+import {dialogsDataType, messagesDataType} from "../../types/typesOfReducersState";
 
 
 

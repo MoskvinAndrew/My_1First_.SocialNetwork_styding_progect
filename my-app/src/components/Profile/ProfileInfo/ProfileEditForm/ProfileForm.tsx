@@ -1,10 +1,10 @@
-import {userProfileType} from "../../../../Redux/Store";
 import style from "./ProfileForm.module.css";
 import React, {useEffect} from "react";
 import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
 import {FormLabel, TextField, FormGroup, FormControlLabel, Checkbox} from "@material-ui/core";
-import { updateProfileInformationTC } from "../../../../Redux/profile-reduser";
+import {updateProfileInformationTC, } from "../../../../Redux/profile-reducer";
+import {userProfileType} from "../../../../types/typesOfReducersState";
 
 
 type ProfileDataFormType = {
@@ -14,25 +14,24 @@ type ProfileDataFormType = {
 
 }
 export type ProfileDataFormValuesType = {
-    fullName: string,
-    aboutMe: string,
-    lookingForAJobDescription:string,
+    fullName: string|null,
+    aboutMe: string|null,
+    lookingForAJobDescription:string|null,
     lookingForAJob: boolean,
     contacts:{
-        facebook:string,
-        github: string,
-        instagram: string,
-        mainLink: string,
-        twitter: string,
-        vk: string,
-        website: string,
-        youtube: string
+        facebook:string|null,
+        github: string|null,
+        instagram: string|null,
+        mainLink: string|null,
+        twitter: string|null,
+        vk: string|null,
+        website: string|null,
+        youtube: string|null
     }
 
 }
 
 const ProfileDataForm = (props: ProfileDataFormType) => {
-
 
     const dispatch = useDispatch();
 
@@ -65,7 +64,7 @@ const ProfileDataForm = (props: ProfileDataFormType) => {
         onSubmit: (values, {resetForm}) => {
             console.log(values)
              dispatch(updateProfileInformationTC(values,props.userProfile.userId));
-             props.setEditMode(false);
+           setTimeout(()=>props.setEditMode(false),1000);             // костыль из-за ошибки в консоли memoryLeak
 
 
 

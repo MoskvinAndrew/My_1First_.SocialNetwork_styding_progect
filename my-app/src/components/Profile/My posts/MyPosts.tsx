@@ -1,8 +1,8 @@
 import React from "react";
 import C from "./MyPosts.module.css";
-import  { postsDataType} from "../../../Redux/Store";
 import PostContainer from "./Post/PostContainer";
 import {NewPostTextForm} from "./NewPostForm/NewPostForm";
+import {postsDataType} from "../../../types/typesOfReducersState";
 
 
 

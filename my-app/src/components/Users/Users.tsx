@@ -6,15 +6,16 @@ import {NavLink} from "react-router-dom";
 
 export type UsersTypes = {
     users: Array<usersDataType>
-    totalUsersCount: number
-    disableButtons:Array<number|null>
-    UnFollow:(userId:number)=>void,
-    Follow:(userId:number)=>void,
+    totalUsersCount: number,
+    disableButtons: Array<number | null>,
+    UnFollow: (userId: number) => void,
+    Follow: (userId: number) => void,
 
 }
 
 
-export let UsersFunctional = (props: UsersTypes) => {
+export const UsersFunctional: React.FC<UsersTypes> = (props:UsersTypes) =>
+{
 
     return (
 
@@ -30,10 +31,12 @@ export let UsersFunctional = (props: UsersTypes) => {
             </NavLink>
         </div>
         <div>
-            {u.followed ? <button disabled={props.disableButtons.some(id=>id === u.id)} onClick={() => {
-                props.UnFollow(u.id)}}>unFollow</button> :
-                <button disabled={props.disableButtons.some(id=>id==u.id)} onClick={() => {
-                    props.Follow(u.id)}}>Follow</button>
+            {u.followed ? <button disabled={props.disableButtons.some(id => id === u.id)} onClick={() => {
+                    props.UnFollow(u.id)
+                }}>unFollow</button> :
+                <button disabled={props.disableButtons.some(id => id == u.id)} onClick={() => {
+                    props.Follow(u.id)
+                }}>Follow</button>
             }
         </div>
          </span>
@@ -45,6 +48,7 @@ export let UsersFunctional = (props: UsersTypes) => {
              <span>
                  <div>{'u.location.city'}</div>
                  <div>{props.totalUsersCount}</div>
+
             </span>
         </span>
             </div>)

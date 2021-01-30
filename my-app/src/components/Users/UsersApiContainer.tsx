@@ -1,11 +1,10 @@
 import {usersDataType} from "../../Redux/Store";
 import React from "react";
-import * as axios from "axios";
 import {UsersFunctional} from "./Users";
 import {Preloader} from "../common/Preloader/preloader";
-import {usersAPI} from "../../api/api";
-import {UnFollow} from "../../Redux/users-reduser";
 import {Paginator} from "../common/Paginator/Paginator";
+import {useDispatch} from "react-redux";
+import {actions} from "../../Redux/users-reducer";
 
 
 
@@ -14,29 +13,26 @@ type MyPropsType = {
     users: Array<usersDataType>,
     totalUsersCount: number,
     pageSize: number,
+    setCurrentPageAC:(currentPage:number) => void,
     currentPage: number,
-    setCurrentPage: (currentPage: number) => void,
     isFetching:boolean,
     disableButtons:Array<number|null>,
-    getUsers:(currentPage:number,pageSize:number)=>void,
-    UnFollow:(userId:number)=>void,
-    Follow:(userId:number)=>void,
-
-
-
-
+    getUsersTC:(currentPage:number,pageSize:number)=>void,
+    UnFollowTC:(userId:number)=>void,
+    FollowTC:(userId:number)=>void,
 }
 
 
 class UsersApiContain extends React.Component<MyPropsType> {
 
 
+
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage,this.props.pageSize);
+        this.props.getUsersTC(this.props.currentPage,this.props.pageSize);
     };
     onClickHandler = (p: number) => {
-         this.props.setCurrentPage(p);
-         this.props.getUsers(p,this.props.pageSize);
+         this.props.setCurrentPageAC(p);
+         this.props.getUsersTC(p,this.props.pageSize);
     };
 
     render() {
@@ -47,12 +43,15 @@ class UsersApiContain extends React.Component<MyPropsType> {
                        onClickHandler={this.onClickHandler}
                        pageSize={this.props.pageSize}
                        portionSize={10} />
-            {this.props.isFetching? <Preloader/>:<UsersFunctional
+
+
+            {this.props.isFetching? <Preloader/>:
+                <UsersFunctional
                 users={this.props.users}
                 totalUsersCount={this.props.totalUsersCount}
                 disableButtons={this.props.disableButtons}
-                UnFollow={this.props.UnFollow}
-                Follow={this.props.Follow}
+                UnFollow={this.props.UnFollowTC}
+                Follow={this.props.FollowTC}
 
 
             />}

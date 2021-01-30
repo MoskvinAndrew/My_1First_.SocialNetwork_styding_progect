@@ -1,11 +1,8 @@
-import React, {ChangeEvent, useState} from "react";
+import React from "react";
 import S from "../../dialogs.module.css";
-import {messagesDataType} from "../../../../Redux/Store";
 import Messages from "../../Messages/Messages";
-import store, {RootState} from "../../../../Redux/redux-store";
-import {Field} from "redux-form";
 import {MessageReduxForm} from "../MessagesForm/messagesForm";
-import {useSelector} from "react-redux";
+import {messagesDataType} from "../../../../types/typesOfReducersState";
 
 type ChatTypes={
      ava?: string,

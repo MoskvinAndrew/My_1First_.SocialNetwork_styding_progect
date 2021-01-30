@@ -2,8 +2,8 @@ import React from "react";
 import {
     addNewPostActionCreator,
     onLikeActionCreator
-} from "../../../Redux/profile-reduser";
-import {RootState, StoreReduxType} from "../../../Redux/redux-store";
+} from "../../../Redux/profile-reducer";
+import {RootState} from "../../../Redux/redux-store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";

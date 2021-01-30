@@ -9,8 +9,8 @@ import logIn from "../../assets/logIn.svg";
 
 
 type HeaderType = {
-    isAuth: boolean | null,
-    login: string | null,
+    isAuth: boolean ,
+    login: string|null,
 }
 
 export let Header = (props: HeaderType) => {

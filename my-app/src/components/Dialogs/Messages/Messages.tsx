@@ -1,6 +1,6 @@
 import S from "../dialogs.module.css";
 import React from "react";
-import {messagesDataType} from "../../../Redux/Store"
+import {messagesDataType} from "../../../types/typesOfReducersState";
 
 
 type MessagesType = {

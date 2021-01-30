@@ -1,19 +1,20 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../Redux/redux-store";
-import {putUserStatusTC, setCurrentUserStatus} from "../../../../Redux/profile-reduser";
+import {putUserStatusTC, setCurrentUserStatus} from "../../../../Redux/profile-reducer";
 
 
 const UserProfileStatus = () => {
-    let statusStateValue = useSelector<RootState, string>(state => state.profilePage.currentUserStatus);
+    let statusStateValue = useSelector<RootState, string|null>(state => state.profilePage.currentUserStatus);
     const dispatch = useDispatch();
 
     let [edit, setEdit] = useState<boolean>(false);
-    let [status, setStatus] = useState<string>(statusStateValue);
 
-    if(statusStateValue === ""){
-        statusStateValue = "Введите статус"
-    };
+    let [status, setStatus] = useState<string>(statusStateValue?statusStateValue:"Введите статус");
+
+    // if(statusStateValue === ""){
+    //     statusStateValue = "Введите статус"
+    // };
 
     const onDclickHandler = () => {
         setEdit(true);
@@ -25,20 +26,18 @@ const UserProfileStatus = () => {
     };
 
     const onBlurHandler = () => {
-
-            setEdit(false);
-            dispatch(putUserStatusTC(status));
-            dispatch(setCurrentUserStatus(status));
-
+        setEdit(false);
+        dispatch(setCurrentUserStatus(status));
+        statusStateValue &&  dispatch(putUserStatusTC(status));
     };
 
     const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-
-            event.charCode === 13 &&
+        if(event.charCode === 13) {
             setEdit(false);
-            dispatch(putUserStatusTC(status));
             dispatch(setCurrentUserStatus(status));
+            statusStateValue && dispatch(putUserStatusTC(status));
 
+        }
     };
 
 
@@ -51,7 +50,8 @@ const UserProfileStatus = () => {
                            value={status}
                            onChange={onChangeHandler}
                            onBlur={onBlurHandler}
-                           onKeyPress={onKeyPressHandler}/>}
+                            onKeyPress={onKeyPressHandler}
+                    />}
             </span>
             </div>
 

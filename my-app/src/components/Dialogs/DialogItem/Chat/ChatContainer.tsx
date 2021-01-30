@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {sendMessageCreator} from "../../../../Redux/dialogs-reducer";
 import Chat from "./Chat";
 import  {RootState, StoreReduxType} from "../../../../Redux/redux-store";
 import {connect} from "react-redux";
+import {sendMessageAC} from "../../../../Redux/dialogs-reducer";
 
 
 
@@ -18,7 +18,7 @@ let mapStateToProps = (state: RootState)=>{
     return{
 
         onSendMessageClick: (newMessage:string)=>{
-            dispatch(sendMessageCreator(newMessage));
+            dispatch(sendMessageAC(newMessage));
 
         }
     }

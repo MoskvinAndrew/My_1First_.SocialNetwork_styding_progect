@@ -1,12 +1,11 @@
 import React from "react";
-import axios from "axios";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {AuthMeThunk, LogOutTC, setAuthUserData} from "../../Redux/auth-reducer";
+import {AuthMeThunk, LogOutTC} from "../../Redux/auth-reducer";
 import {Header} from "./header";
 
 export type HeaderContainerPropsType = {
-    isAuth:boolean|null,
+    isAuth:boolean,
     login:string|null,
 }
 

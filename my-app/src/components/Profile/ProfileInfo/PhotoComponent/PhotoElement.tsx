@@ -1,10 +1,10 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {userProfileType} from "../../../../Redux/Store";
 import {RootState} from "../../../../Redux/redux-store";
 import noPhoto from "./../../../../assets/noPhoto.png";
 import style from "./PhotoBlock.module.css"
-import {saveAvatarTC} from "../../../../Redux/profile-reduser";
+import {saveAvatarTC} from "../../../../Redux/profile-reducer";
+import {userProfileType} from "../../../../types/typesOfReducersState";
 
 
 type PhotoElementType = {
@@ -16,7 +16,6 @@ type PhotoElementType = {
 const PhotoElement  = (props:PhotoElementType) =>{
 
     let userProfile = useSelector<RootState, userProfileType|null> (state => state.profilePage.userProfile);
-    // let statusStateValue = useSelector<RootState, string>(state => state.profilePage.currentUserStatus);
     let dispatch = useDispatch();
 
 const photo = () =>{

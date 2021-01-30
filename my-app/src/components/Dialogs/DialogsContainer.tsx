@@ -1,15 +1,23 @@
-import React, {useReducer} from 'react';
-import {connect, useSelector} from "react-redux";
-import store, {RootState, StoreReduxType} from "../../Redux/redux-store";
+import React from 'react';
+import {connect, } from "react-redux";
+import store, {RootState} from "../../Redux/redux-store";
 import Dialogs from "./Dialogs";
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
 import {compose} from "redux";
-import {dialogsDataType, messagesDataType} from "../../Redux/Store";
+import { dialogsDataType, messagesDataType } from '../../types/typesOfReducersState';
+
+
 
 
 type mapStateToPropsType = {
     dialogsData: dialogsDataType[],
     messagesData: messagesDataType[]
+}
+type mapDispatchToProps = {
+
+}
+type OwnPropsType = {
+
 }
 
 let mapStateToProps = (state: RootState):mapStateToPropsType => {
@@ -22,7 +30,6 @@ let mapStateToProps = (state: RootState):mapStateToPropsType => {
 
 
 
-export default compose
-(connect(mapStateToProps, {}),
-    withAuthRedirect)
-(Dialogs) as React.ComponentType;
+export default compose(connect<mapStateToPropsType,mapDispatchToProps,OwnPropsType,RootState>
+                                (mapStateToProps, {}), withAuthRedirect)
+                                                       (Dialogs) as React.ComponentType;

@@ -8,26 +8,16 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
 
-
-// export let rerenderEntireThree= (state:RootState) => {   //кусок старого стора,пока боюсь удалять
-
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
             <App/>
-            </Provider>
-        </BrowserRouter>,
+        </Provider>
+    </BrowserRouter>,
 
-        document.getElementById('root')
-    );
+    document.getElementById('root')
+);
 
-// }
-//  rerenderEntireThree(store.getState());    //кусок старого стора,пока боюсь удалять
-
-// store.subscribe (()=> {
-//     let state = store.getState();
-//     rerenderEntireThree(state);
-// });
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
