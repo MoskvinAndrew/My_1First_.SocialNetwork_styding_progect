@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {AuthMeThunk, LogOutTC} from "../../Redux/auth-reducer";
+import {AuthMeThunk, LogOutTC} from "../../Redux/auth_reducer_test/auth-reducer";
 import {Header} from "./header";
 
 export type HeaderContainerPropsType = {

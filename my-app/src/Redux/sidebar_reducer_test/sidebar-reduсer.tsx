@@ -1,4 +1,4 @@
-import {sidebarType} from "./Store";
+import {sidebarType} from "../Store";
 
 let initialState = {
 

@@ -2,11 +2,11 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {getUserStatusTC, saveAvatarTC, setCurrentUserStatus, setUserProfile, getUserProfileTC} from "../../Redux/profile-reducer";
+import {getUserStatusTC, saveAvatarTC,actions, getUserProfileTC} from "../../Redux/profile_reducer_test_selectors/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
 import {compose} from "redux";
-import {recivedUserId, status, userProfile} from "../../Redux/profile-selectors";
+import {recivedUserId, status, userProfile} from "../../Redux/profile_reducer_test_selectors/profile-selectors";
 import {userProfileType} from "../../types/typesOfReducersState";
 
 
@@ -36,11 +36,21 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.recivedUserId;
-        }
-         this.props.getUserProfileTC(userId);
-        this.props.getUserStatusTC(userId);
+            // if(!userId){
+            //    this.props.match.params('/login')
+            // }
 
-    }
+        }
+        if(!userId){
+            console.log('ID should exist in URI params or in state')
+        }else {
+            this.props.getUserProfileTC(userId);
+            this.props.getUserStatusTC(userId);
+
+        }}
+
+
+
 
     componentDidMount() {
         this.refreshProfile()
@@ -78,7 +88,7 @@ let mapStateToProps = (state: RootState) => ({
 
 })
 
-export default compose(connect(mapStateToProps, {setUserProfile, setCurrentUserStatus, getUserStatusTC,saveAvatarTC,getUserProfileTC})
+export default compose(connect(mapStateToProps, {setUserProfile:actions.setUserProfile, setCurrentUserStatus:actions.setCurrentUserStatus, getUserStatusTC,saveAvatarTC,getUserProfileTC})
     , withAuthRedirect
     , withRouter
 )

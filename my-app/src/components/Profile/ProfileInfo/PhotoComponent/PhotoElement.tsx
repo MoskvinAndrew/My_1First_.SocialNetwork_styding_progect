@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../Redux/redux-store";
 import noPhoto from "./../../../../assets/noPhoto.png";
 import style from "./PhotoBlock.module.css"
-import {saveAvatarTC} from "../../../../Redux/profile-reducer";
+import {saveAvatarTC} from "../../../../Redux/profile_reducer_test_selectors/profile-reducer";
 import {userProfileType} from "../../../../types/typesOfReducersState";
 
 

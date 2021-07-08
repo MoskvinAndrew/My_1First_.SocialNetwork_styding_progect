@@ -1,5 +1,4 @@
 import React, {useState} from "react";
- import ReactPaginate from 'react-paginate';
 import  style from "./Paginator.module.css";
 
 type PaginatorType = {
@@ -34,7 +33,7 @@ export const Paginator = React.memo((props:PaginatorType) => {
             <div className={style.contentWrap} >
                 {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map(p =>
-                <span onClick={() => {
+                <span key={p} onClick={() => {
                 props.onClickHandler(p)
             }} className={props.currentPage === p ? style.selectedPage : ""}><div  className={style.pageNumber}>{p}</div></span>)}
             </div>

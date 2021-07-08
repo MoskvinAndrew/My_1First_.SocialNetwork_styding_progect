@@ -1,5 +1,5 @@
  import React from 'react';
-import {RootState} from "./redux-store";
+import {RootState} from "../redux-store";
  import {createSelector} from "reselect";
 
 export const getUsersPage = (state:RootState) => {
@@ -22,4 +22,7 @@ export const getIsFetching = (state:RootState) => {
 };
 export const getDisableButtons = (state:RootState) => {
     return state.UsersPage.disableButtons
+}
+export const getFilter = (state:RootState) => {
+    return state.UsersPage.filter
 }

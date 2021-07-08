@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../Redux/redux-store";
-import {putUserStatusTC, setCurrentUserStatus} from "../../../../Redux/profile-reducer";
+import {putUserStatusTC, actions} from "../../../../Redux/profile_reducer_test_selectors/profile-reducer";
 
 
 const UserProfileStatus = () => {
@@ -27,14 +27,14 @@ const UserProfileStatus = () => {
 
     const onBlurHandler = () => {
         setEdit(false);
-        dispatch(setCurrentUserStatus(status));
+        dispatch(actions.setCurrentUserStatus(status));
         statusStateValue &&  dispatch(putUserStatusTC(status));
     };
 
     const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if(event.charCode === 13) {
             setEdit(false);
-            dispatch(setCurrentUserStatus(status));
+            dispatch(actions.setCurrentUserStatus(status));
             statusStateValue && dispatch(putUserStatusTC(status));
 
         }

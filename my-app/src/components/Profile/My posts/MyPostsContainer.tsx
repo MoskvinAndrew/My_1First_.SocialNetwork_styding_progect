@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    addNewPostActionCreator,
-    onLikeActionCreator
-} from "../../../Redux/profile-reducer";
+    actions
+
+} from "../../../Redux/profile_reducer_test_selectors/profile-reducer";
 import {RootState} from "../../../Redux/redux-store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
@@ -18,10 +18,10 @@ return {
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         onAddNewPost: (textNew: string) => {
-            dispatch(addNewPostActionCreator(textNew));
+            dispatch(actions.addNewPostActionCreator(textNew));
         },
         onOnLikeActionCreator: (id: string) => {
-            dispatch(onLikeActionCreator(id))
+            dispatch(actions.onLikeActionCreator(id))
         }
     }
 }

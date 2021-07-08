@@ -4,7 +4,7 @@ import {Preloader} from "../../common/Preloader/preloader";
 import UserProfileStatus from "./UserStatus/UserProfileStatus";
 import PhotoElement from "./PhotoComponent/PhotoElement";
 import ProfileDataForm from "./ProfileEditForm/ProfileForm";
-import {} from "../../../Redux/profile-reducer";
+import {} from "../../../Redux/profile_reducer_test_selectors/profile-reducer";
 import {userProfileType} from "../../../types/typesOfReducersState";
 
 

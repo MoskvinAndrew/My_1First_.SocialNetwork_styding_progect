@@ -3,21 +3,16 @@ import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
 import {
     actions,
-
     FollowTC, getUsersTC,
-
-    UnFollowTC,
-
-} from "../../Redux/users-reducer";
+    UnFollowTC,} from "../../Redux/user_reducer_test_selectors/users-reducer";
 import UsersApiContain from "./UsersApiContainer";
 import {
-
     getCurrentPage,
-    getDisableButtons,
+    getDisableButtons, getFilter,
     getIsFetching,
     getPageSize,
     getTotalUsersCount, getUsersPage
-} from "../../Redux/users-selectors";
+} from "../../Redux/user_reducer_test_selectors/users-selectors";
 
 
 let mapStateToProps = (state: RootState) => {
@@ -27,7 +22,8 @@ let mapStateToProps = (state: RootState) => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        disableButtons: getDisableButtons(state)
+        disableButtons: getDisableButtons(state),
+        filter:getFilter(state)
 
     }
 }

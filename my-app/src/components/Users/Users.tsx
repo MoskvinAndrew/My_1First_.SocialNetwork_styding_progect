@@ -1,7 +1,11 @@
 import S from "./Users.module.css";
-import React from "react";
+import React, {useEffect} from "react";
 import {usersDataType} from "../../Redux/Store";
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
+import {FilterType, getUsersTC} from "../../Redux/user_reducer_test_selectors/users-reducer";
+import {useDispatch} from "react-redux";
+import * as queryString from "querystring";
+import {Button} from "antd";
 
 
 export type UsersTypes = {
@@ -10,13 +14,46 @@ export type UsersTypes = {
     disableButtons: Array<number | null>,
     UnFollow: (userId: number) => void,
     Follow: (userId: number) => void,
+    filter: FilterType,
+    currentPage: number,
+    pageSize: number,
 
 }
 
 
-export const UsersFunctional: React.FC<UsersTypes> = (props:UsersTypes) =>
-{
+export const UsersFunctional: React.FC<UsersTypes> = React.memo(({currentPage,filter,...props}) => {
 
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    // useEffect(()=>{
+    //     history.push({
+    //         pathname:'/users',
+    //         search:`?term=${props.filter.term}&friend=${props.filter.friend}&page=${props.currentPage}`
+    //     })
+    // },[props.filter,props.currentPage])
+
+    useEffect(() => {
+        const parsed = queryString.parse(history.location.search.substr(1)) as {term:string,friend:string,page:string} /*substr - для того чтобы убрать ?знак от первого ключа(это БАГ)*/
+        console.log( parsed)
+
+        history.push({
+            pathname: '/users',
+            search: `?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`
+        })
+
+
+
+        let actualPage = currentPage
+        let actualFilter = filter
+
+        if(!!parsed.page)actualPage=Number(parsed.page)
+        if(!!parsed.friend)actualFilter = {...actualFilter,friend: parsed.friend ===null?null:parsed.friend==="true"?true:false}
+        if(!!parsed.term) actualFilter = {...actualFilter,term: parsed.term as string}
+        // console.log(actualPage,props.pageSize,actualFilter)
+        // dispatch(getUsersTC(actualPage,props.pageSize,actualFilter))  /*16 выпуск путь самурая 2.0*/
+
+    }, [filter])
     return (
 
         <div>
@@ -34,9 +71,9 @@ export const UsersFunctional: React.FC<UsersTypes> = (props:UsersTypes) =>
             {u.followed ? <button disabled={props.disableButtons.some(id => id === u.id)} onClick={() => {
                     props.UnFollow(u.id)
                 }}>unFollow</button> :
-                <button disabled={props.disableButtons.some(id => id == u.id)} onClick={() => {
+                <Button type={"primary"} disabled={props.disableButtons.some(id => id == u.id)} onClick={() => {
                     props.Follow(u.id)
-                }}>Follow</button>
+                }}>Follow</Button>
             }
         </div>
          </span>
@@ -46,7 +83,7 @@ export const UsersFunctional: React.FC<UsersTypes> = (props:UsersTypes) =>
                  <div>{'Surname'}</div>
             </span>
              <span>
-                 <div>{'u.location.city'}</div>
+                 <div>{'asd'}</div>
                  <div>{props.totalUsersCount}</div>
 
             </span>
@@ -55,5 +92,5 @@ export const UsersFunctional: React.FC<UsersTypes> = (props:UsersTypes) =>
             }
 
         </div>)
-}
+})
 

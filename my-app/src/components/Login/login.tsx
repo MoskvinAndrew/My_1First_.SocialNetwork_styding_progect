@@ -7,16 +7,12 @@ import {connect, useDispatch} from "react-redux";
 import { Redirect } from 'react-router-dom';
 import {RootState} from "../../Redux/redux-store";
 import formStyle from "./../common/formsControls/formsControls.module.css"
-import {LoginTC} from "../../Redux/auth-reducer";
+import {LoginTC, ThunkType} from "../../Redux/auth_reducer_test/auth-reducer";
 
 type MapStateToPropsType = {
     isAuth:boolean,
     captchaUrl?:string|null
  }
- type MapDispatchToProps = {
-    LoginTC:(email:string,password:string,rememberMe:boolean,captcha:string)=>void
- }
-
 
 type LoginFormOwnProps = {
     captchaUrl?: string|null
@@ -87,14 +83,14 @@ const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>        
 
 
 
-const Login: React.FC<MapDispatchToProps & MapStateToPropsType> = (props:MapStateToPropsType & MapDispatchToProps) => {
+const Login: React.FC<MapStateToPropsType> = (props:MapStateToPropsType) => {
     let dispatch = useDispatch();
     if(props.isAuth){
         return <Redirect to={"/Profile"} />
     };
 
     const onSubmit = (formData: LoginFormValuesType) => {
-        dispatch(props.LoginTC(formData.email,formData.password,formData.rememberMe,formData.captcha));
+        dispatch(LoginTC(formData.email,formData.password,formData.rememberMe,formData.captcha));
     };
 
 
@@ -113,4 +109,4 @@ let mapStateToProps = (state:RootState):MapStateToPropsType =>({
 })
 
 
-export default connect(mapStateToProps,{LoginTC}) (Login);
+export default connect(mapStateToProps,{}) (Login);

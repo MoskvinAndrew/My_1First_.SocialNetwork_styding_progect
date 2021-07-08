@@ -23,7 +23,7 @@ let NewPostForm: React.FC<InjectedFormProps<newPostValuesType, newPostOwnProps> 
 
                 <Field   name={"newPostText"}
                          component={TextArea}
-                         placeholder={"textarea"}
+                         placeholder={"New post"}
                 validate={[requiredField,maxLength20]}/>
             <button>Add</button>
         </form>)}

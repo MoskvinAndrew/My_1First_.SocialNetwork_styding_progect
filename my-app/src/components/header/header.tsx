@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import logoImg from "../../assets/planeLogo.png";
 import exit from "../../assets/exit.svg"
 import {useDispatch} from "react-redux";
-import {LogOutTC} from "../../Redux/auth-reducer";
+import {LogOutTC} from "../../Redux/auth_reducer_test/auth-reducer";
 import logIn from "../../assets/logIn.svg";
 
 

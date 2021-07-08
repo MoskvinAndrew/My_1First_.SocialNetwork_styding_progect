@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
 import {FormLabel, TextField, FormGroup, FormControlLabel, Checkbox} from "@material-ui/core";
-import {updateProfileInformationTC, } from "../../../../Redux/profile-reducer";
+import {updateProfileInformationTC, } from "../../../../Redux/profile_reducer_test_selectors/profile-reducer";
 import {userProfileType} from "../../../../types/typesOfReducersState";
 
 

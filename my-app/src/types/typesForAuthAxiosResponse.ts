@@ -3,24 +3,26 @@ export enum ResultCodesEnum {
     error = 1
 
 }
+
 export enum ResultCodeForCaptcha {
     CaptchaIsRequired = 10
 }
+
 //Auth api types
 
+export type APIResponseType<D = {}, RC = ResultCodesEnum> = {
+    data: D,
+    messages: Array<string>,
+    resultCode: RC
+}
+
+
 export type MeResponseType = {
-    data:{id:number,
-           login:string,
-           email:string}
-    resultCode: ResultCodesEnum
-    messages: Array<string>
+    id: number,
+    login: string,
+    email: string
 }
 
 export type loginPOSTResponseType = {
-    resultCode: ResultCodesEnum | ResultCodeForCaptcha
-    messages: Array<string>
-    data: {
-        userId:number
-    }
-
+    userId: number
 }

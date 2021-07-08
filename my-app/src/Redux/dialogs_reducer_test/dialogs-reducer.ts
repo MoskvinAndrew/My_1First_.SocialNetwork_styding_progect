@@ -1,17 +1,9 @@
 import {v1} from "uuid";
-import {messagesDataType, dialogsDataType} from "../types/typesOfReducersState";
+import {messagesDataType, dialogsDataType} from "../../types/typesOfReducersState";
+import {InferActionsType} from "../redux-store";
 
 
-const SEND_MESSAGE = "dialogsReducer/SEND_MESSAGE";
-
-export type sendMessageACType = {
-    type: typeof SEND_MESSAGE,
-    newMessage:string
-
-};
-type ActionsTypes = sendMessageACType
-
-
+type ActionsType = InferActionsType<typeof actions>
 export type dialogsPageType = typeof initialState
 
 
@@ -32,14 +24,9 @@ let initialState = {
 
 }
 
-
-
-
-
-const dialogsReducer=(state:dialogsPageType = initialState,action:ActionsTypes):dialogsPageType => {
+const dialogsReducer=(state:dialogsPageType = initialState,action:ActionsType):dialogsPageType => {
     switch (action.type) {
-
-        case SEND_MESSAGE:
+        case "dialogsReducer/SEND_MESSAGE":
             let copyState = {...state};
             copyState.messagesData = [...state.messagesData,{id: v1(), text: action.newMessage}];
 
@@ -47,8 +34,13 @@ const dialogsReducer=(state:dialogsPageType = initialState,action:ActionsTypes):
         default:return state;
     }
 }
-export const sendMessageAC =(newMessage:string):sendMessageACType=>({type:SEND_MESSAGE,newMessage});
 
+export let actions = {
+    sendMessageAC: (newMessage: string)=> ({
+        type: "dialogsReducer/SEND_MESSAGE",
+        newMessage
+    } as const )
+}
 export default dialogsReducer;
 
 
