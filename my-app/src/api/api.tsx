@@ -4,7 +4,8 @@ export const instanse = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
     withCredentials: true,
     headers: {
-        'API-KEY': 'a4ccc59a-b0d7-4cb8-b389-cc3b34f67e84'
+        'API-KEY': 'a4ccc59a-b0d7-4cb8-b389-cc3b34f67e84',
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
 });
 
