@@ -106,7 +106,7 @@ class App extends React.Component<AppPropsType> {
                         </Sider>
                         <Content style={{padding: '0 24px', minHeight: 280}}>
                             <Switch>
-                                <Route exact path='/' render={() => <Redirect to={'/Profile'}/>}/>
+                                <Route  path= '/My_1First_.SocialNetwork_styding_progect' render={() => <Redirect to={'/Profile'}/>}/>
                                 <Route path='/Profile/:userId?' render={() => <ProfileContainer/>}/>
                                 <Route path='/Dialogs' render={() => <DialogsContainer/>}/>
                                 <Route path='/News' render={() => <News/>}/>

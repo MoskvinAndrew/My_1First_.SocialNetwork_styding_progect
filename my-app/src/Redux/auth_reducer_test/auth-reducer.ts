@@ -51,9 +51,10 @@ let actions = {
 export const AuthMeThunk = ():ThunkType => {
     return async (dispatch) => {
             let response = await AuthAPI.me()
-            if (response.resultCode === ResultCodesEnum.success ) {
-                dispatch(actions.setAuthUserDataAC(response.data.id, response.data.email, response.data.login, true));
-            }}}
+        if (response.resultCode === ResultCodesEnum.success ) {
+            dispatch(actions.setAuthUserDataAC(response.data.id, response.data.email, response.data.login, true));
+            }
+    }}
 
 
 export const LoginTC = (email:string,password:string,rememberMe:boolean,captcha:string):ThunkType => {

@@ -12,11 +12,16 @@ import {instanse} from "./api";
 
 
 export const AuthAPI = {
+    // <APIResponseType<MeResponseType>> типизация ми запроса, где то ошибка
     me() {
-        return instanse.get<APIResponseType<MeResponseType>>(`auth/me`)
-            .then(response => {
+        return instanse.get(`auth/me`)
+            .then((response) => {
                 return response.data;
-            })},
+            })
+            .catch(()=>{
+                alert("some trouble")
+            })
+    },
     login(email:string,password:string,rememberMe:boolean,captcha:string|null = null ) {
         return instanse.post<APIResponseType<loginPOSTResponseType,ResultCodesEnum | ResultCodeForCaptcha>>(`auth/login`,{email,password,rememberMe,captcha})
             .then(response => {
