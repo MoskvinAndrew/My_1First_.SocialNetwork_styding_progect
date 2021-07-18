@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "27a0ff913c7b9a5b5644d623acfcf0d6",
+    "revision": "cfe2c76c02b4bf541d3591e1351c6eed",
     "url": "/My_1First_.SocialNetwork_styding_progect/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/My_1First_.SocialNetwork_styding_progect/static/css/2.67e5f240.chunk.css"
   },
   {
-    "revision": "8564415d4f0f450d5f85",
+    "revision": "47c7fcaab5f828d3a75f",
     "url": "/My_1First_.SocialNetwork_styding_progect/static/css/main.a04b8fb6.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/My_1First_.SocialNetwork_styding_progect/static/js/2.f7c53e01.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8564415d4f0f450d5f85",
-    "url": "/My_1First_.SocialNetwork_styding_progect/static/js/main.bde15b0b.chunk.js"
+    "revision": "47c7fcaab5f828d3a75f",
+    "url": "/My_1First_.SocialNetwork_styding_progect/static/js/main.c49dde1f.chunk.js"
   },
   {
     "revision": "2d1d3adfeca2b6cc00c4",
